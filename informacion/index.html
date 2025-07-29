@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Evento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .info-section {
+            min-height: 100vh;
+            position: relative;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .abstract-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(60px);
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-item:hover::before {
+            opacity: 1;
+        }
+
+        .info-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .info-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .info-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+            margin: 0 auto;
+            display: flex;
+            width: fit-content;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .button-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .button-icon {
+            transform: translateX(4px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .info-section {
+                padding: 80px 15px 60px;
+            }
+
+            .glass-card {
+                padding: 40px 25px;
+                border-radius: 24px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+
+            .info-item {
+                padding: 25px;
+                gap: 15px;
+            }
+
+            .info-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                letter-spacing: -0.03em;
+            }
+
+            .info-item {
+                padding: 20px;
+                gap: 12px;
+            }
+
+            .info-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .info-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .info-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .glass-card {
+                background: rgba(0, 0, 0, 0.8);
+                border: 2px solid #fff;
+            }
+            
+            .info-item {
+                background: rgba(0, 0, 0, 0.6);
+                border: 1px solid #fff;
+            }
+        }
+            .sticky-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            background: rgba(30, 32, 45, 0.18);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .sticky-menu .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: -0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            user-select: none;
+        }
+        .sticky-menu nav {
+            display: flex;
+            gap: 32px;
+        }
+        .sticky-menu nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.08rem;
+            font-weight: 500;
+            opacity: 0.85;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.2s, opacity 0.2s;
+        }
+        .sticky-menu nav a:hover,
+        .sticky-menu nav a.active {
+            background: rgba(255,255,255,0.10);
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .sticky-menu {
+                padding: 12px 16px;
+            }
+            .sticky-menu nav {
+                gap: 18px;
+            }
+            .sticky-menu .logo {
+                font-size: 1.1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="sticky-menu">
+        <div class="logo">Power Dance</div>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="../informacion/index.html" class="active">Información</a>
+            <a href="../galeria/index.html">Galería</a>
+            <a href="../contacto/index.html">Contacto</a>
+        </nav>
+    </header>
+    <section class="hero-section">
+        <!-- Fondo con parallax -->
+        <div class="hero-background" id="heroBackground"></div>
+        <!-- Overlay gradient -->
+        <div class="hero-overlay"></div>
+        <!-- Partículas decorativas -->
+        <div class="particles" id="particles"></div>
+        <!-- Contenido principal -->
+        <div class="hero-content">
+            <div class="glass-card" id="glassCard">
+                <h1 class="hero-title" id="heroTitle">
+                    Academia Digital<br>
+                    <span style="background: linear-gradient(135deg, #3b82f6, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">del Futuro</span>
+                </h1>
+                <p class="hero-subtitle" id="heroSubtitle">
+                    Desarrolla tus habilidades con tecnología de vanguardia y metodologías innovadoras que transformarán tu carrera profesional
+                </p>
+                <div class="info-grid">
+                    <div class="info-item" id="infoItem1">
+                        <div class="info-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Certificación Oficial</h3>
+                            <p>Títulos reconocidos internacionalmente</p>
+                        </div>
+                    </div>
+                    <div class="info-item" id="infoItem2">
+                        <div class="info-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Comunidad Global</h3>
+                            <p>+50,000 estudiantes en 40 países</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-buttons" id="ctaButtons">
+                    <a href="#" class="cta-primary">
+                        <i data-lucide="play-circle"></i>
+                        Comenzar Ahora
+                    </a>
+                    <a href="#" class="cta-secondary">
+                        Ver Programas
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Indicador de scroll -->
+        <div class="scroll-indicator">
+            <span>Desliza para explorar</span>
+            <i data-lucide="chevron-down" class="scroll-arrow"></i>
+        </div>
+    </section>
+    <section class="info-section">
+        <div class="abstract-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h1 class="section-title">INFORMACIÓN</h1>
+                <p class="section-subtitle">Descubre todos los detalles del evento más esperado del año</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div class="info-content">
+                            <h3>Fecha y Hora</h3>
+                            <p>Sábado 15 de Marzo, 2025<br>19:00 - 23:00 hrs</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h3>Ubicación</h3>
+                            <p>Centro de Convenciones Metropolitan<br>Av. Reforma 123, CDMX</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🎟️</div>
+                        <div class="info-content">
+                            <h3>Entradas</h3>
+                            <p>Desde $350 MXN<br>Disponibles en línea y taquilla</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">👥</div>
+                        <div class="info-content">
+                            <h3>Capacidad</h3>
+                            <p>Máximo 2,000 personas<br>¡Cupos limitados!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🎨</div>
+                        <div class="info-content">
+                            <h3>Categorías</h3>
+                            <p>Arte Digital, Performance<br>Instalaciones Interactivas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h3>Contacto</h3>
+                            <p>+52 55 1234 5678<br>info@evento2025.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="cta-button">
+                    <span>Inscribirse Ahora</span>
+                    <span class="button-icon">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Registrar ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Configurar timeline principal
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".info-section",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Animación del título
+        tl.to(".section-title", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Animación del subtítulo
+        tl.to(".section-subtitle", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        }, "-=0.5");
+
+        // Animación de los items con stagger
+        tl.to(".info-item", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out"
+        }, "-=0.3");
+
+        // Animación del botón
+        tl.to(".cta-button", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }, "-=0.2");
+
+        // Animación de hover para los items
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Animación especial para el botón
+        const ctaButton = document.querySelector('.cta-button');
+        
+        ctaButton.addEventListener('mouseenter', () => {
+            gsap.to(ctaButton, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            
+            gsap.to(ctaButton.querySelector('.button-icon'), {
+                x: 4,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        ctaButton.addEventListener('mouseleave', () => {
+            gsap.to(ctaButton, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            
+            gsap.to(ctaButton.querySelector('.button-icon'), {
+                x: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        // Animación del brillo del botón
+        ctaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            gsap.to(ctaButton, {
+                scale: 0.95,
+                duration: 0.1,
+                ease: "power2.out",
+                onComplete: () => {
+                    gsap.to(ctaButton, {
+                        scale: 1.05,
+                        duration: 0.2,
+                        ease: "back.out(1.7)"
+                    });
+                }
+            });
+        });
+
+        // Parallax sutil para las formas abstractas
+        gsap.to(".shape-1", {
+            y: -50,
+            x: -30,
+            rotation: 180,
+            duration: 20,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        gsap.to(".shape-2", {
+            y: 30,
+            x: 50,
+            rotation: -180,
+            duration: 25,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        gsap.to(".shape-3", {
+            scale: 1.2,
+            rotation: 360,
+            duration: 15,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+         lucide.createIcons();
+
+        // Registrar ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Crear partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Configurar animaciones GSAP
+        function setupAnimations() {
+            // Timeline principal
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Animación de entrada del glass card
+            tl.to('#glassCard', {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            // Animación del título
+            tl.to('#heroTitle', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.8');
+
+            // Animación del subtítulo
+            tl.to('#heroSubtitle', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out'
+            }, '-=0.4');
+
+            // Animación de los info items
+            tl.to(['#infoItem1', '#infoItem2'], {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.2,
+                ease: 'power2.out'
+            }, '-=0.3');
+
+            // Animación de los botones
+            tl.to('#ctaButtons', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'back.out(1.7)'
+            }, '-=0.2');
+
+            // Efecto parallax del fondo
+            gsap.to('#heroBackground', {
+                y: () => -window.innerHeight * 0.5,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+
+            // Efecto de blur progresivo del glass card
+            gsap.to('#glassCard', {
+                filter: 'blur(8px)',
+                opacity: 0.3,
+                scale: 0.95,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+
+            // Parallax sutil para las partículas
+            gsap.to('.particle', {
+                y: () => -window.innerHeight * 0.3,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+        }
+
+        // Inicializar todo
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            setupAnimations();
+        });
+
+        // Optimización para dispositivos móviles
+        if (window.innerWidth <= 768) {
+            document.querySelector('.hero-background').style.backgroundAttachment = 'scroll';
+        }
+
+        // Efectos de hover adicionales
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

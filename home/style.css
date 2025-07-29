@@ -1,0 +1,337 @@
+#galeria-powerdance *, 
+    #galeria-powerdance *:before,
+    #galeria-powerdance *:after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+      border: 0 none;
+      position: relative;
+    }
+
+    #galeria-powerdance {
+      background: #ff1919;
+      box-sizing: border-box;
+      font-family: 'Rubik Mono One', sans-serif;
+      font-size: 1rem;
+      color: #000;
+      width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  display: block !important;
+    }
+
+    /* ===== LAYOUT RESPONSIVO ===== */
+    @media screen and (min-width: 700px) {
+      #galeria-powerdance > article {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #galeria-powerdance figure {
+        background: #eee;
+        width: calc(50% + 1px);
+        height: 100vh;
+        margin: 0 auto 10vh 0;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5vmin;
+         margin: 0 auto 10vh 0;
+      }
+
+     #galeria-powerdance figure:first-of-type {
+    margin: 0 0 10vh auto;
+    box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* SECCIÓN DERECHA */
+  #galeria-powerdance section {
+    background: #ff1919;
+    width: calc(50% + 1px);
+    height: 100vh;
+    margin: 0 0 10vh auto;
+    position: sticky;
+    top: 0;
+    padding: 5vmin;
+    box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin: 0 0 10vh auto;
+  }
+
+  /* SECCIÓN PAR = A LA IZQUIERDA */
+  #galeria-powerdance section:nth-of-type(even) {
+    margin: 0 auto 10vh 0;
+    box-shadow: 4px -4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* FIGURA PAR = A LA DERECHA */
+  #galeria-powerdance figure:nth-of-type(even) {
+    margin: 0 0 10vh auto;
+    box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* DECORACIÓN GEOMÉTRICA */
+  #galeria-powerdance section::before {
+    background: inherit;
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 7vmin;
+    height: 7vmin;
+    transform: translate(calc(-50% + 1px), -50%) rotate(-45deg);
+    clip-path: polygon(-15% -15%, 110% 0%, 0% 110%);
+    box-shadow: -4px -2px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 1.5vmin 0 0 0;
+  }
+
+  #galeria-powerdance section:nth-of-type(even)::before {
+    left: auto;
+    right: 0;
+    transform: translate(calc(50% - 1px), -50%) rotate(-45deg) scale(-1);
+  }
+
+  #galeria-powerdance section:nth-of-type(even):after {
+    right: 5vmin;
+    left: 45%;
+  }
+      
+      /* Mejoras en las imágenes */
+      #galeria-powerdance figure img {
+        position: fixed;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+      }
+      
+      #galeria-powerdance figure img:hover {
+        transform: scale(1.05);
+      }
+      
+      #galeria-powerdance section > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding: 1rem;
+        overflow: hidden;
+      }
+      
+      /* Animaciones para los textos */
+      #galeria-powerdance h1, 
+      #galeria-powerdance h2 {
+        margin: 15% 0 auto;
+        font-size: 3.5rem;
+        text-align: left;
+        font-weight: 700;
+        line-height: 1;
+        word-spacing: .5rem;
+        opacity: 1;
+        max-width: 90%;
+      }
+      
+      /* Textos pares vienen desde la derecha */
+
+      #galeria-powerdance p {
+        text-align: left;
+        width: 100%;
+        font-family: "Inter", serif;
+        font-weight: 200;
+        font-style: italic;
+        font-size: calc(1.5vmin + 1.75vmax);
+        margin-bottom: 5%;
+        opacity: 1;
+      }
+      
+      /* Efecto parallax sutil en las imágenes */
+      #galeria-powerdance figure {
+        will-change: transform;
+      }
+      
+      /* Responsive adjustments */
+      @media screen and (max-width: 1200px) {
+        #galeria-powerdance figure img {
+          max-width: 90%;
+          max-height: 90%;
+        }
+      }
+      
+      @media screen and (max-width: 900px) {
+        #galeria-powerdance figure img {
+          max-width: 95%;
+          max-height: 95%;
+        }
+        
+        #galeria-powerdance h1, 
+        #galeria-powerdance h2 {
+  
+          font-size: calc(4vmin + 2.5vmax);
+        }
+        
+        #galeria-powerdance p {
+      
+          font-size: calc(2vmin + 1.5vmax);
+        }
+      }
+    }
+  @media screen and (max-width: 699px) {
+  #galeria-powerdance body > article {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #galeria-powerdance figure, 
+  #galeria-powerdance section {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  #galeria-powerdance figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #galeria-powerdance section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background: #111;
+  }
+
+
+  #galeria-powerdance p {
+    color:#fff;
+    font-size: 1.2rem;
+      font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  }
+
+  #galeria-powerdance h1, 
+  #galeria-powerdance h2 {
+    color:#fff;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+
+}
+
+#galeria-powerdance .logo-overlay {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vw;
+  transform: translateX(-50%);
+  max-width: 25vw;
+  opacity: 0.85;
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
+  pointer-events: none;
+  height: auto;
+  width: 150px; /* Tamaño por defecto (escritorio) */
+}
+
+@media screen and (max-width: 699px) {
+ #galeria-powerdance .logo-overlay {
+    width: 80px; /* Tamaño reducido para móvil */
+    max-width: 50vw;
+    opacity: 0.9;
+    filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+  }
+}
+
+/* Sección Hero Power Dance */
+.hero-power-dance * {
+  box-sizing: border-box;
+}
+
+.hero-power-dance {
+  overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #111111;
+  position: relative;
+}
+
+.hero-power-dance .hero {
+  height: 100vh;
+}
+
+.hero-power-dance .hero__inner {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.hero-power-dance .hero__image-cont {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-power-dance .hero__image-cont:not(:last-child):after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  background-color: #111111;
+  height: 100%;
+  top: 0;
+  width: 2.5px;
+  z-index: 999;
+}
+
+.hero-power-dance .hero__image-cont img,
+.hero-power-dance .anim-swipe {
+  position: absolute;
+  width: 700%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.hero-power-dance .anim-swipe {
+  width: 100%;
+  background-color: #111111;
+}
+
+.hero-power-dance .hero__image-cont:nth-child(1) img { left: -100%; }
+.hero-power-dance .hero__image-cont:nth-child(2) img { left: -200%; }
+.hero-power-dance .hero__image-cont:nth-child(3) img { left: -300%; }
+.hero-power-dance .hero__image-cont:nth-child(4) img { left: -400%; }
+.hero-power-dance .hero__image-cont:nth-child(5) img { left: -500%; }
+.hero-power-dance .hero__image-cont:nth-child(6) img { left: -600%; }
+
+.hero-power-dance .spacer { height: 300vh; }
+
+.hero-power-dance .scroll {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+
+
+
+

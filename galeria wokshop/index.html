@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Workshop</title>
+    <!-- jQuery corregido (sin espacios) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+     .galeria_workshop-body {
+        padding: 30px 0;
+        position: relative;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .galeria_workshop-gallery {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-auto-rows: 250px;
+        gap: 10px;
+      }
+      
+      .galeria_workshop-img-c {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      .galeria_workshop-img-w {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: transform ease-in-out 300ms;
+      }
+
+      .galeria_workshop-img-w img {
+        display: none;
+      }
+
+      .galeria_workshop-img-c {
+        transition: width ease 400ms, height ease 350ms,
+          left cubic-bezier(0.4, 0, 0.2, 1) 420ms,
+          top cubic-bezier(0.4, 0, 0.2, 1) 420ms;
+      }
+
+      .galeria_workshop-img-c:hover .galeria_workshop-img-w {
+        transform: scale(1.05);
+        transition: transform cubic-bezier(0.4, 0, 0.2, 1) 450ms;
+      }
+
+      .galeria_workshop-img-c.galeria_workshop-active {
+        width: 100vw !important;
+        height: 100vh !important;
+        position: fixed !important;
+        z-index: 9999;
+        top: 0 !important;
+        left: 0 !important;
+        border-radius: 0;
+      }
+
+      .galeria_workshop-img-c.galeria_workshop-postactive {
+        position: fixed;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .galeria_workshop-img-c.galeria_workshop-active.galeria_workshop-positioned {
+        left: 0 !important;
+        top: 0 !important;
+        transition-delay: 50ms;
+      }
+
+      /* Media Queries para diferentes tamaños de pantalla */
+      @media (max-width: 768px) {
+        .galeria_workshop-body {
+          padding: 15px 0;
+        }
+        
+        .galeria_workshop-gallery {
+          width: 95%;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          grid-auto-rows: 150px;
+          gap: 8px;
+        }
+        
+        .galeria_workshop-img-c:hover .galeria_workshop-img-w {
+          transform: scale(1.02);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .galeria_workshop-gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 120px;
+          gap: 5px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .galeria_workshop-gallery {
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 300px;
+        }
+      }
+
+      /* Para pantallas muy grandes */
+      @media (min-width: 1600px) {
+        .galeria_workshop-gallery {
+          grid-template-columns: repeat(4, 1fr);
+          grid-auto-rows: 350px;
+        }
+      }
+
+      /* Estilos para la imagen expandida */
+      .galeria_workshop-img-c.galeria_workshop-active::before {
+        content: '✕';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10000;
+      }
+
+      /* Eliminar el clearfix ya que usamos grid */
+    </style>
+</head>
+<body class="galeria_workshop-body">
+   
+<div class="galeria_workshop-gallery">
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06082-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06082-scaled.jpg" alt="Imagen 1" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06012-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06012-scaled.jpg" alt="Imagen 2" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05926-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05926-scaled.jpg" alt="Imagen 3" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05796-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05796-scaled.jpg" alt="Imagen 4" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05788-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05788-scaled.jpg" alt="Imagen 5" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05746-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05746-scaled.jpg" alt="Imagen 6" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05742-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05742-scaled.jpg" alt="Imagen 7" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06432-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06432-scaled.jpg" alt="Imagen 8" />
+    </div>
+  </div>
+  <div class="galeria_workshop-img-c">
+    <div class="galeria_workshop-img-w" style="background-image: url('https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06300-scaled.jpg')">
+      <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06300-scaled.jpg" alt="Imagen 9" />
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  // Función para manejar el click en las imágenes
+  $(".galeria_workshop-img-c").click(function() {
+    let w = $(this).outerWidth();
+    let h = $(this).outerHeight();
+    let x = $(this).offset().left;
+    let y = $(this).offset().top;
+    
+    $(".galeria_workshop-active").not($(this)).remove();
+    let copy = $(this).clone();
+    copy.insertAfter($(this)).height(h).width(w).delay(500).addClass("galeria_workshop-active");
+    $(".galeria_workshop-active").css('top', y);
+    $(".galeria_workshop-active").css('left', x);
+    
+    setTimeout(function() {
+      copy.addClass("galeria_workshop-positioned");
+    }, 0);
+  }); 
+});
+
+$(document).on("click", ".galeria_workshop-img-c.galeria_workshop-active", function(e) {
+  // Prevenir que el click en el botón de cerrar active el evento
+  if ($(e.target).closest('.galeria_workshop-img-c.galeria_workshop-active::before').length) {
+    return;
+  }
+  
+  let copy = $(this);
+  copy.removeClass("galeria_workshop-positioned galeria_workshop-active").addClass("galeria_workshop-postactive");
+  setTimeout(function() {
+    copy.remove();
+  }, 500);
+});
+
+// También cerrar con la tecla ESC
+$(document).keyup(function(e) {
+  if (e.keyCode === 27) {
+    $(".galeria_workshop-active").removeClass("galeria_workshop-positioned galeria_workshop-active").addClass("galeria_workshop-postactive");
+    setTimeout(function() {
+      $(".galeria_workshop-postactive").remove();
+    }, 500);
+  }
+});
+
+console.log("Welcome to Galeria Workshop!");
+</script>
+</body>
+</html>

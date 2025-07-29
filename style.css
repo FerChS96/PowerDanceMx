@@ -1,0 +1,407 @@
+ /* ===== ESTILOS GENERALES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+
+        
+
+        /* ===== ESTILOS DE SECCIONES ===== */
+        .section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white; 
+            background-color: transparent;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Overlay para mejorar legibilidad del texto */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SECCIÓN HERO ===== */
+       .hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffff00, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.4);
+        }
+
+        /* ===== SECCIÓN PROMOCIÓN ===== */
+        .promocion {
+    background: linear-gradient(135deg, #8a2be2, #4b0082), url('img/promocion.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+        .promo-badge {
+            background: #ff1493;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== SECCIÓN QUIÉNES SOMOS ===== */
+        .nosotros {
+            background: linear-gradient(45deg, #4b0082, #8b008b);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffff00;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== SECCIÓN CLASES ===== */
+        .clases {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+        }
+
+        .clases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .clase-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .clase-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .clase-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN GALERÍA ===== */
+        .galeria {
+            background: linear-gradient(45deg, #8b008b, #4b0082);
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        /* ===== SECCIÓN TESTIMONIOS ===== */
+        .testimonios {
+            background: linear-gradient(135deg, #ff1493, #8a2be2);
+        }
+
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN UNIRSE ===== */
+        .unirse {
+            background: linear-gradient(45deg, #4b0082, #8b008b);
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN CONTACTO ===== */
+        .contacto {            
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact-item i {
+            font-size: 3rem;
+            color: #ffff00;
+            margin-bottom: 15px;
+        }
+
+        /* ===== RESPONSIVIDAD ===== */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .side-menu {
+                width: 280px;
+                right: -280px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-content {
+                padding: 20px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .clases-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .slideshow-container {
+                margin: 20px auto;
+            }
+
+            .slide img {
+                height: 250px;
+            }
+
+            .testimonial {
+                padding: 20px;
+            }
+
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* ===== ANIMACIONES ADICIONALES ===== */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff1493, 0 0 40px #ff1493; }
+            to { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff1493, 0 0 20px #ff1493; }
+        }
+        .hero-bg-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC03338.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.8s ease; /* Suaviza el cambio */
+        will-change: opacity;
+        }
+        .hero-bg-fixed.active {
+        opacity: 1; /* Se muestra con fade */
+        }

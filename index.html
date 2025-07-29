@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Power Dance - Escuela de Baile</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@1,200&family=Rubik+Mono+One&display=swap" rel="stylesheet" />
+    <link href=" https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css " />
+
+    <!-- FullPage.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css " />
+
+    <!-- Estilo principal -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="hero-bg-fixed" id="heroBackground"></div>
+    <!-- ===== CONTENIDO PRINCIPAL CON FULLPAGE.JS ===== -->
+    <div id="fullpage">
+        
+        <!-- ===== SECCIÓN 1: HERO DE BIENVENIDA ===== -->
+        
+        <div class="section hero" data-anchor="inicio">   
+            <div class="section-content">
+                <h1 class="logo glow">POWER DANCE</h1>
+                <p class="hero-subtitle">Desata tu pasión por el baile y conquista el escenario</p>
+                <a href="#promocion" class="cta-button floating">¡Comienza Ahora!</a>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 2: PROMOCIÓN ACTUAL ===== -->
+        <div class="section promocion" data-anchor="promocion">
+            <div class="section-content">
+                <div class="promo-badge">¡OFERTA ESPECIAL!</div>
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">50% OFF</h2>
+                <h3 style="font-size: 2rem; margin-bottom: 30px;">En tu primera mensualidad</h3>
+                <p style="font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Inscríbete este mes y obtén acceso completo a todas nuestras clases de baile. 
+                    ¡No dejes pasar esta oportunidad única!
+                </p>
+                <a href="#contacto" class="cta-button">Quiero mi Descuento</a>
+                <p style="margin-top: 20px; opacity: 0.8;">*Válido hasta fin de mes</p>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 3: QUIÉNES SOMOS ===== -->
+        <div class="section nosotros" data-anchor="nosotros">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">Quiénes Somos</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    Power Dance es más que una escuela de baile. Somos una familia apasionada por el arte del movimiento, 
+                    dedicada a formar bailarines excepcionales y personas seguras de sí mismas.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Estudiantes Activos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Premios Ganados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Estilos de Baile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 4: CLASES DESTACADAS ===== -->
+        <div class="section clases" data-anchor="clases">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">Nuestras Clases</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 40px;">Descubre el estilo que más te apasione</p>
+                <div class="clases-grid">
+                    <div class="clase-card">
+                        <div class="clase-icon">💃</div>
+                        <h3 style="margin-bottom: 15px;">Salsa & Bachata</h3>
+                        <p>Ritmos latinos que encienden la pista de baile</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">🕺</div>
+                        <h3 style="margin-bottom: 15px;">Hip Hop</h3>
+                        <p>Movimientos urbanos llenos de actitud y energía</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">🩰</div>
+                        <h3 style="margin-bottom: 15px;">Ballet Clásico</h3>
+                        <p>Elegancia y técnica en su máxima expresión</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">⚡</div>
+                        <h3 style="margin-bottom: 15px;">Jazz Moderno</h3>
+                        <p>Fusión perfecta entre técnica y creatividad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 5: GALERÍA DE CONCURSOS ===== -->
+        <div class="section galeria" data-anchor="galeria">
+           <div id="galeria-powerdance"></div>
+        </div>
+        <!-- ===== SECCIÓN 7: INVITACIÓN A UNIRSE ===== -->
+        <div class="section unirse" data-anchor="unirse">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">¿Por Qué Elegir Power Dance?</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px;">Más que una escuela, somos tu segundo hogar</p>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-star benefit-icon"></i>
+                        <div>
+                            <h4>Maestros Certificados</h4>
+                            <p>Profesionales con experiencia internacional</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-users benefit-icon"></i>
+                        <div>
+                            <h4>Clases Grupales</h4>
+                            <p>Ambiente divertido y motivador</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-trophy benefit-icon"></i>
+                        <div>
+                            <h4>Competencias</h4>
+                            <p>Oportunidades para brillar en el escenario</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-heart benefit-icon"></i>
+                        <div>
+                            <h4>Comunidad</h4>
+                            <p>Forma parte de nuestra familia de baile</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="#contacto" class="cta-button">¡Quiero Ser Parte!</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 8: CTA FINAL CON CONTACTO ===== -->
+        <div class="section contacto" data-anchor="contacto">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">¡Tu Momento Es Ahora!</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px;">Contacta con nosotros y comienza tu aventura de baile</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Ubicación</h4>
+                        <p>Av. Danza 123<br>Cuautitlán Izcalli, México</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Teléfono</h4>
+                        <p>+52 55 1234-5678<br>WhatsApp disponible</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>info@powerdance.com<br>contacto@powerdance.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Horarios</h4>
+                        <p>Lun-Vie: 16:00-22:00<br>Sáb: 09:00-18:00</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="tel:+525512345678" class="cta-button" style="margin-right: 20px;">Llamar Ahora</a>
+                    <a href="https://wa.me/525512345678" class="cta-button" style="background: linear-gradient(45deg, #25d366, #128c7e);">WhatsApp</a>
+                </div>
+                
+                <div style="margin-top: 40px; opacity: 0.8;">
+                    <p>Síguenos en redes sociales: 
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/vendors/scrolloverflow.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js "></script>
+    <script src="https://unpkg.com/fullpage.js/dist/fullpage.min.js "></script>
+
+    <!-- Tu script personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>

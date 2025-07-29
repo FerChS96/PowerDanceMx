@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Dance - Escuela de Baile</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@1,200&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+    <!-- FullPage.js CSS desde CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ===== ESTILOS GENERALES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+
+        
+
+        /* ===== ESTILOS DE SECCIONES ===== */
+        .section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white; 
+            background-color: transparent;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Overlay para mejorar legibilidad del texto */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SECCIÓN HERO ===== */
+       .hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffff00, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.4);
+        }
+
+        /* ===== SECCIÓN PROMOCIÓN ===== */
+        .promocion {
+    background: linear-gradient(135deg, #8a2be2, #4b0082), url('img/promocion.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+        .promo-badge {
+            background: #ff1493;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== SECCIÓN QUIÉNES SOMOS ===== */
+        .nosotros {
+            background: linear-gradient(45deg, #4b0082, #8b008b);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffff00;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== SECCIÓN CLASES ===== */
+        .clases {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+        }
+
+        .clases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .clase-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .clase-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .clase-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN GALERÍA ===== */
+        .galeria {
+            background: linear-gradient(45deg, #8b008b, #4b0082);
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        /* ===== SECCIÓN TESTIMONIOS ===== */
+        .testimonios {
+            background: linear-gradient(135deg, #ff1493, #8a2be2);
+        }
+
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN UNIRSE ===== */
+        .unirse {
+            background: linear-gradient(45deg, #4b0082, #8b008b);
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: #ffff00;
+        }
+
+        /* ===== SECCIÓN CONTACTO ===== */
+        .contacto {            
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact-item i {
+            font-size: 3rem;
+            color: #ffff00;
+            margin-bottom: 15px;
+        }
+
+        /* ===== RESPONSIVIDAD ===== */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .side-menu {
+                width: 280px;
+                right: -280px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-content {
+                padding: 20px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .clases-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .slideshow-container {
+                margin: 20px auto;
+            }
+
+            .slide img {
+                height: 250px;
+            }
+
+            .testimonial {
+                padding: 20px;
+            }
+
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* ===== ANIMACIONES ADICIONALES ===== */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff1493, 0 0 40px #ff1493; }
+            to { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff1493, 0 0 20px #ff1493; }
+        }
+        .hero-bg-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC03338.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.8s ease; /* Suaviza el cambio */
+        will-change: opacity;
+        }
+        .hero-bg-fixed.active {
+        opacity: 1; /* Se muestra con fade */
+        }
+
+    </style>
+</head>
+<body>
+  
+
+    <div class="hero-bg-fixed" id="heroBackground"></div>
+    <!-- ===== CONTENIDO PRINCIPAL CON FULLPAGE.JS ===== -->
+    <div id="fullpage">
+        
+        <!-- ===== SECCIÓN 1: HERO DE BIENVENIDA ===== -->
+        
+        <div class="section hero" data-anchor="inicio">   
+            <div class="section-content">
+                <h1 class="logo glow">POWER DANCE</h1>
+                <p class="hero-subtitle">Desata tu pasión por el baile y conquista el escenario</p>
+                <a href="#promocion" class="cta-button floating">¡Comienza Ahora!</a>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 2: PROMOCIÓN ACTUAL ===== -->
+        <div class="section promocion" data-anchor="promocion">
+            <div class="section-content">
+                <div class="promo-badge">¡OFERTA ESPECIAL!</div>
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">50% OFF</h2>
+                <h3 style="font-size: 2rem; margin-bottom: 30px;">En tu primera mensualidad</h3>
+                <p style="font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Inscríbete este mes y obtén acceso completo a todas nuestras clases de baile. 
+                    ¡No dejes pasar esta oportunidad única!
+                </p>
+                <a href="#contacto" class="cta-button">Quiero mi Descuento</a>
+                <p style="margin-top: 20px; opacity: 0.8;">*Válido hasta fin de mes</p>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 3: QUIÉNES SOMOS ===== -->
+        <div class="section nosotros" data-anchor="nosotros">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">Quiénes Somos</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    Power Dance es más que una escuela de baile. Somos una familia apasionada por el arte del movimiento, 
+                    dedicada a formar bailarines excepcionales y personas seguras de sí mismas.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Estudiantes Activos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Premios Ganados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Estilos de Baile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 4: CLASES DESTACADAS ===== -->
+        <div class="section clases" data-anchor="clases">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">Nuestras Clases</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 40px;">Descubre el estilo que más te apasione</p>
+                <div class="clases-grid">
+                    <div class="clase-card">
+                        <div class="clase-icon">💃</div>
+                        <h3 style="margin-bottom: 15px;">Salsa & Bachata</h3>
+                        <p>Ritmos latinos que encienden la pista de baile</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">🕺</div>
+                        <h3 style="margin-bottom: 15px;">Hip Hop</h3>
+                        <p>Movimientos urbanos llenos de actitud y energía</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">🩰</div>
+                        <h3 style="margin-bottom: 15px;">Ballet Clásico</h3>
+                        <p>Elegancia y técnica en su máxima expresión</p>
+                    </div>
+                    <div class="clase-card">
+                        <div class="clase-icon">⚡</div>
+                        <h3 style="margin-bottom: 15px;">Jazz Moderno</h3>
+                        <p>Fusión perfecta entre técnica y creatividad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 5: GALERÍA DE CONCURSOS ===== -->
+        <div class="section galeria" data-anchor="galeria">
+           <div id="galeria-powerdance"></div>
+        </div>
+        <!-- ===== SECCIÓN 7: INVITACIÓN A UNIRSE ===== -->
+        <div class="section unirse" data-anchor="unirse">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 30px;">¿Por Qué Elegir Power Dance?</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px;">Más que una escuela, somos tu segundo hogar</p>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-star benefit-icon"></i>
+                        <div>
+                            <h4>Maestros Certificados</h4>
+                            <p>Profesionales con experiencia internacional</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-users benefit-icon"></i>
+                        <div>
+                            <h4>Clases Grupales</h4>
+                            <p>Ambiente divertido y motivador</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-trophy benefit-icon"></i>
+                        <div>
+                            <h4>Competencias</h4>
+                            <p>Oportunidades para brillar en el escenario</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-heart benefit-icon"></i>
+                        <div>
+                            <h4>Comunidad</h4>
+                            <p>Forma parte de nuestra familia de baile</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="#contacto" class="cta-button">¡Quiero Ser Parte!</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECCIÓN 8: CTA FINAL CON CONTACTO ===== -->
+        <div class="section contacto" data-anchor="contacto">
+            <div class="section-content">
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">¡Tu Momento Es Ahora!</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 40px;">Contacta con nosotros y comienza tu aventura de baile</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Ubicación</h4>
+                        <p>Av. Danza 123<br>Cuautitlán Izcalli, México</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Teléfono</h4>
+                        <p>+52 55 1234-5678<br>WhatsApp disponible</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>info@powerdance.com<br>contacto@powerdance.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Horarios</h4>
+                        <p>Lun-Vie: 16:00-22:00<br>Sáb: 09:00-18:00</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="tel:+525512345678" class="cta-button" style="margin-right: 20px;">Llamar Ahora</a>
+                    <a href="https://wa.me/525512345678" class="cta-button" style="background: linear-gradient(45deg, #25d366, #128c7e);">WhatsApp</a>
+                </div>
+                
+                <div style="margin-top: 40px; opacity: 0.8;">
+                    <p>Síguenos en redes sociales: 
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" style="color: #ffff00; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== FULLPAGE.JS DESDE CDN ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/vendors/scrolloverflow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/fullpage.js/dist/fullpage.min.js"></script>        
+    <script>
+        // ===== CONFIGURACIÓN DE FULLPAGE.JS =====
+        new fullpage('#fullpage', {
+            licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+            // Configuración básica
+            scrollOverflow: true,
+            autoScrolling: true,
+            scrollHorizontally: true,
+            
+            // Loop infinito vertical
+            loopTop: true,
+            loopBottom: true,
+            
+            // Navegación
+            navigation: true,
+            navigationPosition: 'right',
+            navigationTooltips: ['Inicio', 'Promoción', 'Nosotros', 'Clases', 'Galería', 'Únete', 'Contacto'],
+            showActiveTooltip: true,
+            
+            // Anclas para navegación por URL
+            anchors: ['inicio', 'promocion', 'nosotros', 'clases', 'galeria', 'unirse', 'contacto'],
+            
+            // Transiciones suaves
+            css3: true,
+            easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
+            scrollingSpeed: 1000,
+            
+            // Responsive
+            responsiveWidth: 0,
+            responsiveHeight: 0,
+            
+            onLeave: function(origin, destination, direction) {
+            const nextAnchor = destination.anchor.toLowerCase(); // Asegura minúsculas
+            const bg = document.getElementById('heroBackground');
+
+            if (nextAnchor === 'inicio') {
+                bg.classList.add('active'); // Aparece suavemente
+                console.log('Preparando fondo para INICIO');
+            } else {
+                bg.classList.remove('active'); // Se desvanece
+                console.log('Ocultando fondo fijo');
+            }
+        },
+
+
+        afterLoad: function(origin, destination, direction) {
+            const anchorLink = destination.anchor;
+
+            // Aquí mantienes las lógicas adicionales
+            if (anchorLink === 'galeria') {
+                startSlideshow();
+            }
+
+            if (anchorLink === 'testimonios') {
+                startTestimonialRotation();
+            }
+        }
+        
+        });
+
+        // Cerrar menú con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        // ===== DETECCIÓN DE DISPOSITIVO MÓVIL =====
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // ===== OPTIMIZACIONES PARA MÓVIL =====
+        if (isMobile()) {
+            // Ajustar configuración de fullpage para móvil
+            console.log('Dispositivo móvil detectado - Optimizando experiencia');
+            
+            // Reducir velocidad de transición en móvil
+            document.documentElement.style.setProperty('--scroll-speed', '800ms');
+        }
+
+        // ===== INICIADORES AL CARGAR LA PÁGINA =====
+        document.addEventListener('DOMContentLoaded', function() {            
+            // Configurar transiciones suaves para testimonios
+            const testimonialText = document.getElementById('testimonialText');
+            const testimonialAuthor = document.getElementById('testimonialAuthor');
+            
+            if (testimonialText && testimonialAuthor) {
+                testimonialText.style.transition = 'opacity 0.3s ease';
+                testimonialAuthor.style.transition = 'opacity 0.3s ease';
+            }
+            
+            console.log('Power Dance - Landing Page cargada exitosamente');
+        });
+
+        // ===== MANEJO DE ERRORES =====
+        window.addEventListener('error', function(e) {
+            console.log('Error detectado:', e.error);
+            // Aquí podrías enviar errores a un servicio de monitoreo
+        });
+
+        // ===== ANALYTICS Y SEGUIMIENTO (PLACEHOLDER) =====
+        function trackEvent(eventName, eventData) {
+            // Aquí puedes integrar Google Analytics, Facebook Pixel, etc.
+            console.log('Evento:', eventName, eventData);
+        }
+
+        // Rastrear clics en CTAs
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                trackEvent('CTA_Click', {
+                    button_text: this.textContent,
+                    section: this.closest('.section').dataset.anchor
+                });
+            });
+        });
+
+        // ===== FUNCIONES DE UTILIDAD =====
+        
+        // Función para obtener la sección actual
+        function getCurrentSection() {
+            return fullpage_api.getActiveSection().anchor;
+        }
+        
+        // Función para ir a una sección específica
+        function goToSection(sectionName) {
+            fullpage_api.moveTo(sectionName);
+            closeMenu();
+        }
+        
+        // Función para alternar modo oscuro (futura implementación)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+        
+        // Restaurar preferencia de modo oscuro
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // ===== MENSAJE DE CONSOLE PARA DESARROLLADORES =====
+        console.log(`
+        🕺 ¡Bienvenido a Power Dance! 💃
+        ===================================
+        
+        Esta landing page incluye:
+        ✅ FullPage.js con scroll infinito
+        ✅ Menú hamburguesa responsivo
+        ✅ 8 secciones con efectos parallax
+        ✅ Slideshow automático
+        ✅ Testimonios rotativos
+        ✅ Animaciones CSS/JS
+        ✅ Diseño completamente responsivo
+        
+        Para personalizar:
+        - Cambia las imágenes en las rutas img/
+        - Modifica colores en las variables CSS
+        - Ajusta textos y contenido
+        - Configura enlaces de contacto reales
+        
+        ¡Que tengas un excelente día bailando! 🎵
+        `);
+
+const galeriaHTML = `
+
+  <style>
+    *, *:before, *:after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+      border: 0 none;
+      position: relative;
+    }
+
+    html {
+      background: #fff;
+      box-sizing: border-box;
+      font-family: 'Rubik Mono One', sans-serif;
+      font-size: 1rem;
+      color: #000;
+    }
+
+    @media screen and (min-width: 700px) {
+      body > article {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      figure {
+        background: #eee;
+        width: calc(50% + 1px);
+        height: 100vh;
+        margin: 0 auto 10vh 0;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5vmin;
+      }
+      figure:nth-of-type(2n)::after {
+        right: 45%;
+        left: 5vmin;
+      }
+      section {
+        background: #ff1919;
+        width: calc(50% + 1px);
+        height: 100vh;
+        margin: 0 0 10vh auto;
+        position: sticky;
+        top: 0;
+        padding: 5vmin;
+        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+        overflow: hidden;
+      }
+      figure:nth-of-type(1),
+      section:nth-of-type(1) {
+        margin: 0 0 10vh 0;
+        width: 50%;
+      }
+      figure:nth-of-type(2n) {
+        margin: 0 0 10vh auto;
+        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+      }
+      section:nth-of-type(2n) {
+        margin: 0 auto 10vh 0;
+        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+      }
+      section::before {
+        background: inherit;
+        z-index: 1;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 7vmin;
+        height: 7vmin;
+        transform: translate(calc(-50% + 1px), -50%) rotate(-45deg);
+        clip-path: polygon(-15% -15%, 110% 0%, 0% 110%);
+        box-shadow: -4px -2px 8px rgba(0,0,0,.4);
+        border-radius: 1.5vmin 0 0 0;
+      }
+      section:nth-of-type(2n)::before {
+        left: auto;
+        right: 0;
+        transform: translate(calc(50% - 1px), -50%) rotate(-45deg) scale(-1);
+      }
+    
+      section:nth-of-type(2n):after {
+        right: 5vmin;
+        left: 45%;
+      }
+      
+      /* Mejoras en las imágenes */
+      figure img {
+        position: fixed;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+      }
+      
+      figure img:hover {
+        transform: scale(1.05);
+      }
+      
+      section > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding: 1rem;
+        overflow: hidden;
+      }
+      
+      /* Animaciones para los textos */
+      h1, h2 {
+        margin: 15% 0 auto;
+        font-size: 3.5rem;
+        text-align: left;
+        font-weight: 700;
+        line-height: 1;
+        word-spacing: .5rem;
+      
+        opacity: 0;
+        max-width: 90%;
+      }
+      
+      /* Textos pares vienen desde la derecha */
+      section:nth-of-type(2n) h1,
+      section:nth-of-type(2n) h2 {
+        animation: slideInFromRight 1s ease-out 0.5s forwards;
+      }
+      
+      p {
+        text-align: left;
+        width: 100%;
+        font-family: "Inter", serif;
+        font-weight: 200;
+        font-style: italic;
+        font-size: calc(1.5vmin + 1.75vmax);
+        margin-bottom: 5%;
+        opacity: 0;
+        animation: slideInFromLeft 1s ease-out 0.8s forwards;
+      }
+      
+      /* Párrafos pares vienen desde la derecha */
+      section:nth-of-type(2n) p {
+        animation: slideInFromRight 1s ease-out 0.8s forwards;
+        text-align: left;
+      }
+      
+      /* Keyframes para animaciones */
+      @keyframes slideInFromLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @keyframes slideInFromRight {
+        0% {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      /* Animación trigger basada en scroll */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateX(-100px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      .animate-on-scroll.from-right {
+        transform: translateX(100px);
+      }
+      
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      /* Efecto parallax sutil en las imágenes */
+      figure {
+        will-change: transform;
+      }
+      
+      /* Responsive adjustments */
+      @media screen and (max-width: 1200px) {
+        figure img {
+          max-width: 90%;
+          max-height: 90%;
+        }
+      }
+      
+      @media screen and (max-width: 900px) {
+        figure img {
+          max-width: 95%;
+          max-height: 95%;
+        }
+        
+        h1, h2 {
+          font-size: calc(4vmin + 2.5vmax);
+        }
+        
+        p {
+          font-size: calc(2vmin + 1.5vmax);
+        }
+      }
+    }
+  @media screen and (max-width: 699px) {
+  body > article {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  figure, section {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background: #111;
+  }
+
+  h1, h2, p {
+    color: white;
+    opacity: 0;
+    animation: slideInFromLeft 1s ease-out 0.5s forwards;
+  }
+
+  section:nth-of-type(2n) h1,
+  section:nth-of-type(2n) h2,
+  section:nth-of-type(2n) p {
+    animation: slideInFromRight 1s ease-out 0.5s forwards;
+  }
+
+  p {
+    font-size: 1.2rem;
+      font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  }
+
+  h1, h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .logo-overlay {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vw;
+  transform: translateX(-50%);
+  width: 80px;
+  max-width: 50vw;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+
+}
+
+.logo-overlay {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vw;
+  transform: translateX(-50%);
+  width: 150px;
+  max-width: 25vw;
+  opacity: 0.85;
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+  </style>
+  <article>
+    <figure>
+      <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC00967.jpg" alt="Foto 1" class="parallax-img" />
+      <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+    </figure>
+    <section>
+      <div>
+        <h1 class="animate-text">Power Dance</h2>
+        <p class="animate-text">Expresión, energía y pasión en cada paso.</p>
+      </div>
+    </section>
+
+    <figure>
+      <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC00985.jpg" alt="Foto 2" class="parallax-img" />
+      <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+    </figure>
+    <section>
+      <div>
+        <h2 class="animate-text">Más que baile</h2>
+        <p class="animate-text">Una comunidad que vibra con movimiento.</p>
+      </div>
+    </section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC01036-scaled.jpg" alt="Foto Power Dance 4" class="parallax-img" />
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Energía en cada movimiento</h2>
+    <p class="animate-text">La danza transforma, empodera y conecta.</p>
+  </div>
+</section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC01077-scaled.jpg" alt="Foto Power Dance 5" class="parallax-img" />
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Fuerza y armonía</h2>
+    <p class="animate-text">Cada paso expresa lo que las palabras no pueden.</p>
+  </div>
+</section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC01133-scaled.jpg" alt="Foto Power Dance 6" class="parallax-img" />
+<img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Transforma tu ritmo</h2>
+    <p class="animate-text">Baila como si ya fueras quien sueñas ser.</p>
+  </div>
+</section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC01207-scaled.jpg" alt="Foto Power Dance 7" class="parallax-img" />
+<img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Escenario de sueños</h2>
+    <p class="animate-text">En Power Dance, todos brillan con luz propia.</p>
+  </div>
+</section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC01218-scaled.jpg" alt="Foto Power Dance 8" class="parallax-img" />
+<img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Confianza y arte</h2>
+    <p class="animate-text">Tu autenticidad es el mejor paso de todos.</p>
+  </div>
+</section>
+
+<figure>
+  <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC02578-scaled.jpg" alt="Foto Power Dance 9" class="parallax-img" />
+<img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+</figure>
+<section>
+  <div>
+    <h2 class="animate-text">Vibra Power Dance</h2>
+    <p class="animate-text">Cuando bailas desde el alma, no hay error posible.</p>
+  </div>
+</section>
+
+
+    <figure>
+      <img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/DSC00995.jpg" alt="Foto 3" class="parallax-img" />
+<img src="https://mediumvioletred-sparrow-189149.hostingersite.com/wp-content/uploads/2025/06/POWER-DANCE-LOGO-2025-1-scaled.png" alt="Logo Power Dance" class="logo-overlay">
+
+    </figure>
+    <section>
+      <div>
+        <h2 class="animate-text">Únete</h2>
+        <p class="animate-text">Descubre tu potencial. Vive Power Dance.</p>
+      </div>
+    </section>
+  </article>`;
+
+    // Animaciones basadas en scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          const texts = section.querySelectorAll('.animate-text');
+          
+          texts.forEach((text, index) => {
+            setTimeout(() => {
+              text.style.opacity = '1';
+              text.style.transform = 'translateX(0)';
+            }, index * 200);
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observar todas las secciones
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Efecto parallax sutil en las imágenes
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax-img');
+      
+      parallaxElements.forEach((element, index) => {
+        const rate = scrolled * -0.1;
+        const yPos = -(rate / (index + 1));
+        element.style.transform = `translateY(${yPos}px)`;
+      });
+    });
+
+    // Mejorar la experiencia de carga
+    document.addEventListener('DOMContentLoaded', () => {
+      // Precargar imágenes para mejor rendimiento
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        const newImg = new Image();
+        newImg.src = img.src;
+      });
+    });
+  </script>
+
+
+</body>
+</html>
