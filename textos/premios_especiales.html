@@ -1,0 +1,239 @@
+<!-- Carga de Poppins (quítalo si ya la tienes en Divi) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ====== POWER DANCE AWARDS – Premios especiales ====== */
+.awards{
+  /* Vars locales */
+  --bg:#0b0b0b; --ink:#f5f5f5; --muted:#b5b5b5; --accent:#e21919; --card:#151515;
+  --gap:18px;
+
+  background:var(--bg); color:var(--ink);
+  padding:clamp(24px,5vw,56px);
+  
+  /* SOLUCION PARA DIVI - Forzar ancho completo */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  /* Fuente */
+  font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.awards * { box-sizing:border-box; }
+
+/* Contenedor interno para el contenido */
+.awards__content{
+  max-width:1100px; margin-inline:auto;
+}
+
+/* Cabecera */
+.awards__head h2{
+  font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:.5px; margin:0 0 18px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--accent);
+  border-bottom:2px solid color-mix(in srgb,var(--accent) 70%, transparent);
+  text-wrap:balance;
+}
+
+/* Lista como grid (2 col desktop, 1 col móvil) */
+.awards__list{
+  display:grid; grid-template-columns:repeat(2,minmax(320px,1fr));
+  gap:var(--gap) clamp(20px,4vw,40px);
+  margin:0; padding:8px 0; list-style:none;
+}
+@media (max-width:900px){ .awards__list{ grid-template-columns:1fr; } }
+
+/* Tarjeta del premio */
+.awards__list li{
+  --shadow: 0 6px 14px rgba(0,0,0,.25);
+  display:grid; grid-template-rows:auto 1fr; gap:12px;
+  background:var(--card); padding:18px 20px; position:relative;
+  box-shadow: var(--shadow);
+  isolation:isolate;
+  animation: awards-slide-in .45s cubic-bezier(.2,.8,0,1) both;
+}
+.awards__list li::before{
+  content:""; position:absolute; inset:0; border:1px solid #ffffff14; pointer-events:none;
+}
+
+/* Stagger simple */
+.awards__list li:nth-child(1){ animation-delay:.02s }
+.awards__list li:nth-child(2){ animation-delay:.06s }
+.awards__list li:nth-child(3){ animation-delay:.10s }
+.awards__list li:nth-child(4){ animation-delay:.14s }
+.awards__list li:nth-child(5){ animation-delay:.18s }
+.awards__list li:nth-child(6){ animation-delay:.22s }
+
+@keyframes awards-slide-in{ from{ opacity:0; transform:translateY(10px) } to{ opacity:1; transform:none } }
+
+/* ========= CAMBIOS: "loading bar" de DERECHA → IZQUIERDA en toda la tarjeta ========= */
+/* Barra roja que crece de DERECHA → IZQUIERDA en toda la tarjeta */
+.awards__list li{
+  position: relative;
+  overflow: hidden;
+}
+
+.awards__list li::after{
+  content:""; position:absolute; top:0; right:0; bottom:0; left:0; 
+  background:var(--accent);
+  transform:scaleX(0); transform-origin:right center;
+  transition:transform .45s cubic-bezier(.2,.8,0,1);
+  z-index:0;
+}
+
+/* Asegura que el contenido quede encima de la barra */
+.awards__list li > *{ position:relative; z-index:1; }
+
+/* Activación cuando el mouse está SOBRE la tarjeta completa */
+.awards__list li:hover::after{ transform:scaleX(1); }
+
+/* Cuando la tarjeta está hover, el título y descripción cambian de color */
+.awards__list li:hover .award__name{ 
+  color:#111; 
+  transition: color .2s ease;
+}
+.awards__list li:hover .award__description{ 
+  color:#333;
+  transition: color .2s ease;
+}
+
+/* ====== Fin cambios ====== */
+
+/* Partes del premio */
+.award__name{
+  color:var(--accent); font-weight:800; letter-spacing:.3px;
+  text-transform:uppercase; font-size:1.1rem; line-height:1.2;
+  transition: color .2s ease;
+}
+
+.award__description{
+  color:var(--muted); font-weight:400; font-size:.9rem; line-height:1.5;
+  text-transform:uppercase; letter-spacing:.02em;
+  transition: color .2s ease;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .awards__list li{ animation:none; }
+  .awards__list li::after{ transition:none; }
+}
+
+/* Estilos para las categorías de reconocimientos */
+.category__section{
+  margin-bottom: 32px;
+  padding: 20px;
+  background: rgba(21, 21, 21, 0.6);
+  border-left: 4px solid var(--accent);
+}
+
+.category__title{
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.category__list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category__list li{
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  padding-left: 0;
+  font-weight: 400;
+}
+
+.category__list .note{
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Responsive para categorías en móvil */
+@media (max-width:768px){
+  .category__section{
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .category__title{
+    font-size: 1.1rem;
+  }
+  
+  .category__list li{
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<section class="awards" aria-labelledby="awards-title">
+  <div class="awards__content">
+    <header class="awards__head">
+      <h2 id="awards-title"><span style="color: var(--accent);">SPECIAL AWARDS</span></h2>
+    </header>
+    
+    <ul class="awards__list">
+      <li>
+        <div class="award__name">COSTUME AWARD</div>
+        <div class="award__description">Recognition for the choreography with the most creative costumes that complement the vision of the routine.</div>
+      </li>
+
+      <li>
+        <div class="award__name">ELEVATED TECHNIQUE AWARD</div>
+        <div class="award__description">This recognition will be awarded to the choreography and dancers demonstrating an advanced level of dance technique</div>
+      </li>
+
+      <li>
+        <div class="award__name">POWER AWARD</div>
+        <div class="award__description">This recognition will be awarded to the choreography with the most energy that excites the audience and judges</div>
+      </li>
+
+      <li>
+        <div class="award__name">POWER SASS</div>
+        <div class="award__description">This recognition will be awarded to the choreography with the most attitude and stage presence.</div>
+      </li>
+
+      <li>
+        <div class="award__name">CREATIVE AWARD</div>
+        <div class="award__description">Recognition for the most creative, original, and imaginative choreographies, as determined by the judges.</div>
+      </li>
+    </ul>
+
+    <!-- Nueva sección de reconocimientos por categorías -->
+    <div style="margin-top: 48px;">
+      <h3 style="color: var(--accent); font-weight: 800; font-size: 1.5rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.3px;">Awards by Category</h3>
+      
+      <div class="category__section">
+        <h4 class="category__title">GROUPS</h4>
+        <ul class="category__list">
+          <li>• Award plaque for 1st, 2nd, and 3rd placer</li>
+          <li>• Award plaque for the Top 5 in overall group rankings</li>
+          <li>• Trophies awarded to the Top 3</li>
+          <li>• Medal awarded for participation <span class="note">All participants will receive it</span></li>
+        </ul>
+      </div>
+
+      <div class="category__section">
+        <h4 class="category__title">Solos, Duos, and Trios</h4>
+        <ul class="category__list">
+          <li>• Medal awarded based on scores</li>
+          <li>• Award plaque for 1st, 2nd, and 3rd place</li>
+          <li>• Award plaque for the Top 5 in overall group ranking</li>
+          <li>• Medal awarded for participation <span class="note">All participants will receive it</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

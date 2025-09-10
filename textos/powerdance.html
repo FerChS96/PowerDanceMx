@@ -1,0 +1,114 @@
+<!-- Google Fonts: Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<style>
+.styles-section {
+  background: #000000;
+  color: #fff;
+  padding: 48px 0 60px 0;
+  text-align: center;
+  font-family: 'Poppins', Arial, sans-serif;
+  position: relative;
+}
+.styles-section .divider {
+  width: 84%;
+  max-width: 1150px;
+  margin: 0 auto 28px auto;
+  height: 2px;
+  background: linear-gradient(90deg, #e53935 30%, #ffdb66 100%);
+  opacity: 0.33;
+  border-radius: 2px;
+}
+.styles-section h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 38px;
+  letter-spacing: 0.01em;
+}
+.styles-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px 52px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  font-size: 36px;
+  letter-spacing: 0.26em; /* MÁS espaciado entre letras */
+}
+.styles-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.36em;
+  opacity: 0;
+  transform: translateY(36px) scale(0.95);
+  animation: showStyle 0.7s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation-delay: calc(0.07s * var(--i));
+  cursor: pointer;
+  transition: transform 0.23s cubic-bezier(.68,-0.55,.27,1.55), color 0.2s;
+  will-change: transform, color;
+  color: rgba(255,255,255,0.84);
+}
+.styles-list li:hover,
+.styles-list li:focus,
+.styles-list li:active {
+  transform: translateY(0) scale(1.17);
+  z-index: 2;
+  color: #fff; /* 100% blanco al hover */
+}
+.styles-list .dot {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  background: linear-gradient(135deg, #e53935 0%, #ffdb66 100%);
+  border-radius: 50%;
+  margin: 0 0.12em;
+  opacity: 0.72;
+  transition: box-shadow 0.25s, background 0.23s;
+  box-shadow: 0 0 8px 1px #e5393520;
+}
+.styles-list li:hover .dot,
+.styles-list li:focus .dot,
+.styles-list li:active .dot {
+  background: linear-gradient(135deg, #ffdb66 0%, #e53935 100%);
+  box-shadow: 0 0 18px 4px #ffdb6640;
+  opacity: 1;
+}
+@keyframes showStyle {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 1000px) {
+  .styles-list { font-size: 1.13em; gap: 12px 13px;}
+  .styles-section h2 { font-size: 1.7em; }
+}
+@media (max-width: 600px) {
+  .styles-section { padding: 28px 0 26px 0;}
+  .styles-section .divider { margin-bottom: 14px; }
+  .styles-section h2 { font-size: 1.13em; margin-bottom: 22px;}
+  .styles-list { gap: 7px 2px; font-size: 0.98em;}
+}
+</style>
+<div class="styles-section">
+  <div class="divider"></div>
+  <ul class="styles-list">
+    <li style="--i:0">Jazz <span class="dot"></span></li>
+    <li style="--i:1">Hip Hop <span class="dot"></span></li>
+    <li style="--i:2">Lyrical <span class="dot"></span></li>
+    <li style="--i:3">Contemporary <span class="dot"></span></li>
+    <li style="--i:4">Acro Jazz <span class="dot"></span></li>
+    <li style="--i:5">Ballet <span class="dot"></span></li>
+    <li style="--i:6">Tap <span class="dot"></span></li>
+    <li style="--i:7">Reggaetón <span class="dot"></span></li>
+    <li style="--i:8">K-Pop <span class="dot"></span></li>
+    <li style="--i:9">Ballroom <span class="dot"></span></li>
+    <li style="--i:10">Musical Theatre <span class="dot"></span></li>
+    <li style="--i:11">Poms <span class="dot"></span></li>
+    <li style="--i:12">Show <span class="dot"></span></li>
+    <li style="--i:13">Heels <span class="dot"></span></li>
+    <li style="--i:14">Ritmos Latinos <span class="dot"></span></li>
+    <li style="--i:15">Open <span class="dot"></span></li>
+  </ul>
+</div>

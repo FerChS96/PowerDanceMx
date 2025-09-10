@@ -1,0 +1,220 @@
+<!-- Carga de Poppins (quítalo si ya la tienes en Divi) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ====== POWER DANCE TOUR – Timeline cards (Poppins, sedes en mayúsculas, sin botones) ====== */
+.tour{
+  /* Vars locales */
+  --bg:#0b0b0b; --ink:#f5f5f5; --muted:#b5b5b5; --accent:#e21919; --card:#151515;
+  --gap:18px;
+
+  background:var(--bg); color:var(--ink);
+  padding:clamp(24px,5vw,56px);
+  
+  /* SOLUCION PARA DIVI - Forzar ancho completo */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  /* Fuente */
+  font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.tour * { box-sizing:border-box; }
+
+/* Contenedor interno para el contenido */
+.tour__content{
+  max-width:1100px; margin-inline:auto;
+}
+
+/* Cabecera */
+.tour__head h2{
+  font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:.5px; margin:0 0 18px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--accent);
+  border-bottom:2px solid color-mix(in srgb,var(--accent) 70%, transparent);
+  text-wrap:balance;
+}
+.tour__head h2 span{ color:var(--ink); opacity:.85; font-weight:800; }
+
+/* Separador por año */
+.tour__year{
+  margin:28px 0 12px; font-weight:700; font-size:13px; line-height:1.1;
+  letter-spacing:.22em; color:var(--muted); text-transform:uppercase;
+}
+
+/* Lista como grid (2 col desktop, 1 col móvil) */
+.tour__list{
+  display:grid; grid-template-columns:repeat(2,minmax(280px,1fr));
+  gap:var(--gap) clamp(20px,4vw,60px);
+  margin:0; padding:8px 0; list-style:none;
+}
+@media (max-width:900px){ .tour__list{ grid-template-columns:1fr; } }
+
+/* Tarjeta del evento */
+.tour__list li{
+  --shadow: 0 6px 14px rgba(0,0,0,.25);
+  display:grid; grid-template-columns:auto 1fr; align-items:center; gap:14px;
+  background:var(--card); padding:14px 16px; position:relative;
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--shadow);
+  isolation:isolate;
+  animation: tour-slide-in .45s cubic-bezier(.2,.8,0,1) both;
+}
+.tour__list li::before{
+  content:""; position:absolute; inset:0; border:1px solid #ffffff14; pointer-events:none;
+}
+
+/* Stagger simple */
+.tour__list li:nth-child(1){ animation-delay:.02s }
+.tour__list li:nth-child(2){ animation-delay:.06s }
+.tour__list li:nth-child(3){ animation-delay:.10s }
+.tour__list li:nth-child(4){ animation-delay:.14s }
+.tour__list li:nth-child(5){ animation-delay:.18s }
+.tour__list li:nth-child(6){ animation-delay:.22s }
+.tour__list li:nth-child(7){ animation-delay:.26s }
+.tour__list li:nth-child(8){ animation-delay:.30s }
+.tour__list li:nth-child(9){ animation-delay:.34s }
+.tour__list li:nth-child(10){ animation-delay:.38s }
+.tour__list li:nth-child(11){ animation-delay:.42s }
+.tour__list li:nth-child(12){ animation-delay:.46s }
+
+@keyframes tour-slide-in{ from{ opacity:0; transform:translateY(10px) } to{ opacity:1; transform:none } }
+
+/* ========= CAMBIOS: "loading bar" de DERECHA → IZQUIERDA en toda la tarjeta + sede a negro ========= */
+/* Formato de la fecha como chip animable */
+.tour time{
+  position:relative; display:inline-block; padding:.35rem .6rem;
+  color:var(--ink); white-space:nowrap; overflow:hidden;
+}
+
+/* Barra roja que crece de DERECHA → IZQUIERDA en toda la tarjeta */
+.tour__list li{
+  position: relative;
+  overflow: hidden;
+}
+
+.tour__list li::after{
+  content:""; position:absolute; top:0; right:0; bottom:0; left:0; 
+  background:var(--accent);
+  transform:scaleX(0); transform-origin:right center;
+  transition:transform .45s cubic-bezier(.2,.8,0,1);
+  z-index:0;
+}
+
+/* Asegura que el contenido quede encima de la barra */
+.tour__list li > *{ position:relative; z-index:1; }
+
+/* Activación cuando el mouse está SOBRE la tarjeta completa */
+.tour__list li:hover::after{ transform:scaleX(1); }
+
+/* Cuando la tarjeta está hover, la sede pasa de rojo → negro y la fecha a blanco */
+.tour__list li:hover .city{ 
+  color:#111; 
+  transition: color .2s ease;
+}
+.tour__list li:hover time{ 
+  color:var(--ink);
+  transition: color .2s ease;
+}
+
+/* ====== Fin cambios ====== */
+
+/* Partes del item */
+.tour .city{
+  color:var(--accent); font-weight:800; letter-spacing:.3px;
+  text-transform:uppercase; overflow-wrap:anywhere;
+  transition: color .2s ease;
+}
+
+/* Badge opcional dentro del <time> (ej. NATIONALS) */
+.tour time .badge{
+  display:inline-block; margin-right:.5rem; transform:translateY(-1px);
+  font-weight:800; font-size:.72rem; line-height:1; color:#fff;
+  background:color-mix(in srgb,var(--accent) 85%, #000 0%);
+  border-radius:999px; padding:.32rem .5rem;
+}
+
+/* Responsive para badge en móvil */
+@media (max-width:480px){
+  .tour time .badge{
+    display:block; margin-right:0; margin-bottom:.3rem; 
+    width:fit-content; transform:none;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .tour__list li{ animation:none; }
+  .tour__list li::after{ transition:none; }
+}
+</style>
+
+<section class="tour" aria-labelledby="tour-title">
+  <div class="tour__content">
+    <header class="tour__head">
+      <h2 id="tour-title"><span style="color: var(--accent);">POWER DANCE TOUR</span> <span>2025–2026</span></h2>
+    </header>
+    <!-- 2025 -->
+    <h3 class="tour__year">2025</h3>
+    <ul class="tour__list">
+      <li>
+        <time datetime="2025-11-08">8 & 9 Nov 2025</time>
+        <span class="city">GUADALAJARA</span>
+      </li>
+    </ul>
+
+    <!-- 2026 -->
+    <h3 class="tour__year">2026</h3>
+    <ul class="tour__list">
+      <li>
+        <time datetime="2026-03-07">7 & 8 Mar 2026</time>
+        <span class="city">HARLINGEN, TX</span>
+      </li>
+
+      <li>
+        <time datetime="2026-03-14">14 & 15 Mar 2026</time>
+        <span class="city">QUERÉTARO</span>
+      </li>
+
+      <li>
+        <time datetime="2026-03-21">21 Mar 2026</time>
+        <span class="city">TAMPICO</span>
+      </li>
+
+      <li>
+        <time datetime="2026-05-02">2 & 3 May 2026</time>
+        <span class="city">VICTORIA</span>
+      </li>
+
+      <li>
+        <time datetime="2026-05-16">16 May 2026</time>
+        <span class="city">MATAMOROS</span>
+      </li>
+
+      <li>
+        <time datetime="2026-06-06"><span class="badge">NATIONALS</span>6 & 7 Jun 2026</time>
+        <span class="city">VALLARTA</span>
+      </li>
+
+      <li>
+        <time datetime="2026-10-24">24 Oct 2026</time>
+        <span class="city">MÉRIDA</span>
+      </li>
+
+      <li>
+        <time datetime="2026-11-14">14 & 15 Nov 2026</time>
+        <span class="city">GUADALAJARA</span>
+      </li>
+
+      <li>
+        <time datetime="2026-11-07">7 & 8 Nov 2026</time>
+        <span class="city">MONTERREY</span>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<style>
+    /* Contenedor de la pestaña flotante */
+.login-toggle-container {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Botón de toggle (pestaña) - COMPLETAMENTE FIJO */
+.login-toggle-btn {
+  background-color: #FF0000;
+  color: white;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  animation: dance-beat 2s ease-in-out infinite;
+}
+
+/* Animación de latido/baile */
+@keyframes dance-beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  75% {
+    transform: scale(1.08);
+  }
+}
+
+/* Solo el icono puede rotar */
+.login-toggle-btn i {
+  transition: transform 0.6s ease;
+}
+
+.login-toggle-btn:hover {
+  background-color: black;
+  animation: dance-beat-fast 1s ease-in-out infinite;
+}
+
+/* Animación más rápida en hover */
+@keyframes dance-beat-fast {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.login-toggle-btn.open {
+  background-color: black;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 2px 2px 8px rgba(0, 0, 0, 0.3);
+  animation: dance-beat-active 1.5s ease-in-out infinite;
+}
+
+/* Animación cuando está activo/abierto */
+@keyframes dance-beat-active {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 2px 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 2px 2px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.login-toggle-btn.open i {
+  transform: rotate(180deg);
+}
+
+/* Menú desplegable */
+.login-menu {
+  background-color: black;
+  padding: 8px 0;
+  min-width: 160px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  
+  /* Estados de animación - sale hacia la izquierda */
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+}
+
+.login-menu.open {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Enlaces del menú */
+.login-menu-item {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-family: Poppins, sans-serif;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Animación de entrada para los elementos del menú */
+.login-menu.open .login-menu-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.login-menu.open .login-menu-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.login-menu.open .login-menu-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.login-menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #FF0000;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.login-menu-item:hover::before {
+  left: 0;
+}
+
+.login-menu-item:hover {
+  color: white;
+  transform: translateX(8px);
+}
+
+/* Overlay de flash rojo */
+.flash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: opacity 0.05s ease-in-out;
+}
+
+.flash-overlay.flash {
+  opacity: 0.1;
+}
+</style>
+
+<!-- Overlay para el flash rojo -->
+<div class="flash-overlay" id="flashOverlay"></div>
+
+<div class="login-toggle-container">
+  <div class="login-toggle-btn" id="toggleLoginMenu">
+    <i class="fas fa-sign-in-alt"></i>
+  </div>
+  <div class="login-menu" id="loginMenu">
+    <a href="https://powerdancemx.com.mx/login/" class="login-menu-item">Login</a>
+    <a href="https://powerdancemx.com.mx/registration/" class="login-menu-item">Register</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("toggleLoginMenu");
+  const loginMenu = document.getElementById("loginMenu");
+  const flashOverlay = document.getElementById("flashOverlay");
+ 
+  toggleBtn.addEventListener("click", function () {
+    // Toggle del menú
+    loginMenu.classList.toggle("open");
+    toggleBtn.classList.toggle("open");
+   
+    // Efecto de flash rojo
+    flashOverlay.classList.add("flash");
+    setTimeout(function() {
+      flashOverlay.classList.remove("flash");
+    }, 80);
+  });
+ 
+  // Cerrar menú al hacer clic fuera
+  document.addEventListener("click", function (e) {
+    if (!toggleBtn.contains(e.target) && !loginMenu.contains(e.target)) {
+      loginMenu.classList.remove("open");
+      toggleBtn.classList.remove("open");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

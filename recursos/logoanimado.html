@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Dance MX - Competencia Nacional de Baile</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    /* Video de background con parallax */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120vh;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+      will-change: transform;
+    }
+
+    /* Imagen de fallback con parallax */
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120vh;
+      background-image: url('https://powerdancemx.com.mx/wp-content/uploads/2025/08/DSC03303.JPEG-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      will-change: transform;
+    }
+
+    /* Overlay oscuro con parallax */
+    .hero::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+      will-change: transform;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+      will-change: transform;
+    }
+
+    /* Capas de parallax */
+    .hero-layer-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120vh;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    .hero-layer-content {
+      position: relative;
+      z-index: 2;
+      will-change: transform;
+    }
+
+    .hero-layer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+      will-change: transform;
+    }
+
+    /* Logo con movimiento parallax más lento */
+    .logo {
+      width: 640px;
+      margin-bottom: 40px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+      will-change: transform;
+    }
+
+    /* Frases que permanecen más tiempo en pantalla */
+    .tagline-container {
+      position: relative;
+      height: 100px;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .tagline {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-in-out;
+      font-size: 1.8rem;
+      font-weight: 500;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      line-height: 1.3;
+      text-align: center;
+      will-change: transform, opacity;
+    }
+
+    .tagline.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efecto de pulso para elementos rojos */
+    .tagline.active .accent {
+      animation: redPulse 2s ease-in-out;
+    }
+
+    @keyframes redPulse {
+      0% { 
+        color: #e60014;
+        text-shadow: 0 0 5px rgba(230, 0, 20, 0.5);
+        transform: scale(1);
+      }
+      25% {
+        color: #ff1a2e;
+        text-shadow: 
+          0 0 15px rgba(230, 0, 20, 0.9),
+          0 0 25px rgba(230, 0, 20, 0.7);
+        transform: scale(1.05);
+      }
+      50% {
+        color: #e60014;
+        text-shadow: 0 0 8px rgba(230, 0, 20, 0.6);
+        transform: scale(1);
+      }
+      75% {
+        color: #ff1a2e;
+        text-shadow: 
+          0 0 12px rgba(230, 0, 20, 0.8),
+          0 0 20px rgba(230, 0, 20, 0.6);
+        transform: scale(1.03);
+      }
+      100% { 
+        color: #e60014;
+        text-shadow: 0 0 5px rgba(230, 0, 20, 0.5);
+        transform: scale(1);
+      }
+    }
+
+    .accent {
+      color: #e60014;
+      font-weight: 600;
+    }
+
+    /* Botón "Explora más" con parallax */
+    .explore-button {
+      margin-top: 50px;
+      will-change: transform;
+      z-index: 10;
+      position: relative;
+    }
+
+    .scroll-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      opacity: 0.9;
+      animation: bounce 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 1.2rem;
+      color: #e60014;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* Efectos visuales de iluminación alrededor de la sección */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 3;
+      background: 
+        linear-gradient(45deg, transparent 40%, rgba(230,0,20,0.1) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(230,0,20,0.1) 50%, transparent 60%),
+        linear-gradient(90deg, transparent 45%, rgba(255,255,255,0.05) 50%, transparent 55%),
+        linear-gradient(0deg, transparent 45%, rgba(255,255,255,0.05) 50%, transparent 55%);
+      animation: lightShow 6s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    .hero.light-active::after {
+      opacity: 1;
+    }
+
+    @keyframes lightShow {
+      0%, 100% { 
+        opacity: 0;
+        transform: scale(1) rotate(0deg);
+      }
+      25% { 
+        opacity: 0.3;
+        transform: scale(1.02) rotate(1deg);
+      }
+      50% { 
+        opacity: 0.6;
+        transform: scale(1.05) rotate(0deg);
+      }
+      75% { 
+        opacity: 0.4;
+        transform: scale(1.03) rotate(-1deg);
+      }
+    }
+
+    /* Rayos de luz dinámicos */
+    .light-rays {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .light-rays.active {
+      opacity: 1;
+    }
+
+    .light-ray {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(230,0,20,0.4) 30%, rgba(255,255,255,0.2) 50%, rgba(230,0,20,0.4) 70%, transparent 100%);
+      animation: rayMove 4s ease-in-out infinite;
+    }
+
+    .light-ray:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .light-ray:nth-child(2) {
+      left: 30%;
+      animation-delay: 1s;
+      width: 1px;
+    }
+
+    .light-ray:nth-child(3) {
+      left: 60%;
+      animation-delay: 2s;
+    }
+
+    .light-ray:nth-child(4) {
+      left: 80%;
+      animation-delay: 0.5s;
+      width: 3px;
+    }
+
+    .light-ray:nth-child(5) {
+      left: 45%;
+      animation-delay: 3s;
+      width: 1px;
+    }
+
+    @keyframes rayMove {
+      0%, 100% { 
+        opacity: 0;
+        transform: translateX(0) scaleY(0.5);
+      }
+      50% { 
+        opacity: 1;
+        transform: translateX(20px) scaleY(1);
+      }
+    }
+
+    /* H1 oculto para SEO */
+    .seo-h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      white-space: nowrap;
+      font-size: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        width: 400px;
+        margin-bottom: 30px;
+      }
+      
+      .tagline {
+        font-size: 1.4rem;
+        padding: 0 20px;
+      }
+      
+      .tagline-container {
+        height: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        width: 300px;
+      }
+      
+      .tagline {
+        font-size: 1.2rem;
+        padding: 0 25px;
+      }
+      
+      .tagline-container {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- H1 OCULTO PARA SEO -->
+  <h1 class="seo-h1">Power Dance MX - La competencia de baile más grande de México | Talento, pasión y energía en cada escenario</h1>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <!-- Video de background -->
+    <video 
+      class="hero-video" 
+      id="heroVideo"
+      autoplay 
+      muted 
+      playsinline
+      preload="auto"
+    >
+      <source src="https://powerdancemx.com.mx/wp-content/uploads/2025/07/AQPdV5NMmYoNSy8qK9qoEGOJ69f46rB-pmHlGMjiHvMjWeD7iSafTkCtPE_G8HzGWH-fXcEAX1Jdd1-nXAdfwlM.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Imagen de fallback -->
+    <div class="hero-image" id="heroImage"></div>
+
+    <!-- Rayos de luz -->
+    <div class="light-rays" id="lightRays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+
+    <div class="hero-content">
+      <!-- Logo simple -->
+      <img src="https://powerdancemx.com.mx/wp-content/uploads/2025/07/POWER-DANCE-LOGO-2025-scaled.png" alt="Logo Power Dance MX" class="logo">
+
+      <!-- Frases rotando -->
+      <div class="tagline-container">
+        <div class="tagline">Vive la experiencia <span class="accent">Power Dance MX</span></div>
+        <div class="tagline">Talento, energía y pasión en cada escenario</div>
+        <div class="tagline">Demuestra tu poder y <span class="accent">conquista</span> el público</div>
+        <div class="tagline">Baila fuerte, baila con el <span class="accent">corazón</span></div>
+        <div class="tagline">Donde el esfuerzo se convierte en <span class="accent">espectáculo</span></div>
+        <div class="tagline">Una comunidad que te impulsa a <span class="accent">brillar</span></div>
+      </div>
+
+      <!-- Botón Explora más -->
+      <div class="explore-button">
+        <div class="scroll-indicator">Explora más</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // === GESTIÓN DEL VIDEO Y BACKGROUND ===
+    const video = document.getElementById('heroVideo');
+    const heroImage = document.getElementById('heroImage');
+    const hero = document.getElementById('hero');
+    const lightRays = document.getElementById('lightRays');
+
+    video.addEventListener('ended', function() {
+      // Cuando el video termina, mostrar la imagen
+      video.style.opacity = '0';
+      heroImage.style.opacity = '1';
+    });
+
+    video.addEventListener('error', function() {
+      // Si hay error al cargar el video, mostrar la imagen
+      video.style.opacity = '0';
+      heroImage.style.opacity = '1';
+    });
+
+    // === EFECTO PARALLAX ===
+    function updateParallax() {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = {
+        background: document.querySelectorAll('.hero-video, .hero-image, .hero::before'),
+        content: document.querySelector('.hero-content'),
+        logo: document.querySelector('.logo'),
+        taglines: document.querySelector('.tagline-container'),
+        button: document.querySelector('.explore-button')
+      };
+
+      // Background se mueve más lento (efecto parallax clásico)
+      parallaxElements.background.forEach(el => {
+        if (el) {
+          const speed = 0.5;
+          el.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+        }
+      });
+
+      // Logo se mueve a velocidad media
+      if (parallaxElements.logo) {
+        const logoSpeed = 0.3;
+        parallaxElements.logo.style.transform = `translate3d(0, ${-scrolled * logoSpeed}px, 0)`;
+      }
+
+      // Las frases se mantienen más tiempo (velocidad muy lenta)
+      if (parallaxElements.taglines) {
+        const taglineSpeed = 0.1;
+        parallaxElements.taglines.style.transform = `translate3d(0, ${-scrolled * taglineSpeed}px, 0)`;
+      }
+
+      // Botón explora más con velocidad media
+      if (parallaxElements.button) {
+        const buttonSpeed = 0.2;
+        parallaxElements.button.style.transform = `translate3d(0, ${-scrolled * buttonSpeed}px, 0)`;
+      }
+    }
+
+    // Optimización con requestAnimationFrame
+    let ticking = false;
+
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }
+
+    function handleScroll() {
+      requestTick();
+      ticking = false;
+    }
+
+    // Event listener para scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // === ROTACIÓN DE FRASES ===
+    const phrases = document.querySelectorAll('.tagline');
+    let currentIndex = 0;
+
+    function showNextPhrase() {
+      // Quitar active de todas
+      phrases.forEach(phrase => phrase.classList.remove('active'));
+      
+      // Mostrar la actual
+      phrases[currentIndex].classList.add('active');
+      
+      // Activar efectos de luz cuando aparece una frase
+      activateLightEffects();
+      
+      // Avanzar al siguiente
+      currentIndex = (currentIndex + 1) % phrases.length;
+    }
+
+    function activateLightEffects() {
+      // Activar el halo de iluminación
+      hero.classList.add('light-active');
+      lightRays.classList.add('active');
+      
+      // Desactivar después de 3 segundos
+      setTimeout(() => {
+        hero.classList.remove('light-active');
+        lightRays.classList.remove('active');
+      }, 3000);
+    }
+
+    // Iniciar inmediatamente
+    showNextPhrase();
+    
+    // Continuar cada 4 segundos
+    setInterval(showNextPhrase, 4000);
+  </script>
+
+</body>
+</html>

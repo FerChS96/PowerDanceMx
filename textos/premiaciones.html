@@ -1,0 +1,283 @@
+<!-- Google Fonts (una sola vez) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #111;
+    --fg: #fff;
+    --muted: #ddd;
+    --accent: #ff0000;
+    --bubble: rgba(0,0,0,.4);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .text-slider {
+    position: relative;
+    width: 100%;
+    min-height: 260px;           /* altura base flexible */
+    padding: 32px 16px 48px;     /* respiro y espacio para los puntos */
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+
+  .text-slider[aria-busy="true"] { cursor: progress; }
+
+  .slide {
+    position: absolute;
+    width: min(90ch, 90%);
+    max-width: 800px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .award-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: .08em;
+    margin: 0 0 .35rem 0;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .award-desc {
+    font-size: clamp(.95rem, 2.2vw, 1.05rem);
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 0 auto;
+    max-width: 60ch;
+  }
+
+  .nav-buttons {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none; /* permite click solo en botones */
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+@media (max-width: 360px) {
+  .nav-buttons .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+  .nav-buttons .nav-btn {
+    pointer-events: auto;
+    margin: 0 8px;
+    border: 0;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    background: var(--bubble);
+    color: var(--fg);
+    font-size: 22px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: filter .2s ease, transform .1s ease;
+  }
+
+  .nav-buttons .nav-btn:hover { filter: brightness(1.2); }
+  .nav-buttons .nav-btn:active { transform: scale(.96); }
+  .nav-buttons .nav-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+
+  .dots .dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #666;
+    border: 0;
+    cursor: pointer;
+    transition: transform .15s ease;
+  }
+
+  .dots .dot.active { background: var(--accent); }
+  .dots .dot:hover { transform: scale(1.1); }
+  .dots .dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Respeto a usuarios con reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: none; }
+  }
+</style>
+
+<div class="text-slider"
+     role="region"
+     aria-roledescription="carousel"
+     aria-label="Premios y reconocimientos"
+     aria-live="polite">
+  <div class="slide active" role="group" aria-roledescription="slide" aria-label="1 de 5">
+    <h2 class="award-title">COSTUME AWARD</h2>
+    <p class="award-desc">
+      Reconocimiento a la coreografía con los vestuarios más creativos que completan la visión de la coreografía.
+    </p>
+  </div>
+  <div class="slide" role="group" aria-roledescription="slide" aria-label="2 de 5">
+    <h2 class="award-title">ELEVATED TECHNIQUE AWARD</h2>
+    <p class="award-desc">
+      Este reconocimiento se otorgará a la coreografía y bailarines con un avanzado nivel técnico de danza.
+    </p>
+  </div>
+  <div class="slide" role="group" aria-roledescription="slide" aria-label="3 de 5">
+    <h2 class="award-title">POWER AWARD</h2>
+    <p class="award-desc">
+      Este reconocimiento se otorgará a la coreografía con más energía, esa coreografía que hace vibrar al público y los jueces.
+    </p>
+  </div>
+  <div class="slide" role="group" aria-roledescription="slide" aria-label="4 de 5">
+    <h2 class="award-title">POWER SASS</h2>
+    <p class="award-desc">
+      Este reconocimiento se otorgará a la coreografía con más actitud y proyección.
+    </p>
+  </div>
+  <div class="slide" role="group" aria-roledescription="slide" aria-label="5 de 5">
+    <h2 class="award-title">CREATIVE AWARD</h2>
+    <p class="award-desc">
+      Reconocimiento a las coreografías más creativas, originales e imaginativas, estas serán reconocidas a criterio del jurado.
+    </p>
+  </div>
+
+  <!-- Botones -->
+  <div class="nav-buttons" aria-hidden="false">
+    <button class="nav-btn prev" aria-label="Anterior" type="button">&#10094;</button>
+    <button class="nav-btn next" aria-label="Siguiente" type="button">&#10095;</button>
+  </div>
+
+  <!-- Puntos -->
+  <div class="dots" role="tablist" aria-label="Ir a diapositiva"></div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const root = document.querySelector(".text-slider");
+    const slides = [...root.querySelectorAll(".slide")];
+    const prevBtn = root.querySelector(".prev");
+    const nextBtn = root.querySelector(".next");
+    const dotsContainer = root.querySelector(".dots");
+
+    let current = 0;
+    let timer = null;
+    const INTERVAL = 5000;
+    let isHovering = false;
+    let isFocused = false;
+
+    // Crear puntos
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Ir a diapositiva ${i + 1}`);
+      dot.setAttribute("role", "tab");
+      dot.addEventListener("click", () => goTo(i, true));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = [...dotsContainer.querySelectorAll(".dot")];
+
+    function update() {
+      slides.forEach((s, i) => s.classList.toggle("active", i === current));
+      dots.forEach((d, i) => d.classList.toggle("active", i === current));
+      root.setAttribute("aria-busy", "false");
+    }
+
+    function goTo(index, user = false) {
+      root.setAttribute("aria-busy", "true");
+      current = (index + slides.length) % slides.length;
+      update();
+      if (user) restart();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function start() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      stop();
+      timer = setInterval(next, INTERVAL);
+    }
+
+    function stop() { if (timer) clearInterval(timer); }
+
+    function restart() {
+      stop();
+      if (!isHovering && !isFocused) start();
+    }
+
+    // Botones
+    nextBtn.addEventListener("click", () => goTo(current + 1, true));
+    prevBtn.addEventListener("click", () => goTo(current - 1, true));
+
+    // Teclado
+    root.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); goTo(current + 1, true); }
+      if (e.key === "ArrowLeft")  { e.preventDefault(); goTo(current - 1, true); }
+    });
+    // Permitir foco en el contenedor
+    root.tabIndex = 0;
+
+    // Hover / Focus para pausar
+    root.addEventListener("mouseenter", () => { isHovering = true; stop(); });
+    root.addEventListener("mouseleave", () => { isHovering = false; restart(); });
+    root.addEventListener("focusin",  () => { isFocused = true; stop(); });
+    root.addEventListener("focusout", () => { isFocused = false; restart(); });
+
+    // Swipe en móviles
+    let sx = 0, sy = 0, dx = 0, dy = 0;
+    root.addEventListener("touchstart", (e) => {
+      const t = e.changedTouches[0];
+      sx = t.clientX; sy = t.clientY;
+      dx = dy = 0;
+      stop();
+    }, {passive: true});
+
+    root.addEventListener("touchmove", (e) => {
+      const t = e.changedTouches[0];
+      dx = t.clientX - sx; dy = t.clientY - sy;
+    }, {passive: true});
+
+    root.addEventListener("touchend", () => {
+      // swipe horizontal válido
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) goTo(current + 1, true);
+        else goTo(current - 1, true);
+      }
+      restart();
+    });
+
+    // Inicial
+    update();
+    start();
+  });
+</script>

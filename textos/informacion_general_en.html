@@ -1,0 +1,235 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#000000;
+    --text:#ffffff;
+    --border:#333333;
+    --accent:#111111; 
+    --focus:#ffffff;   
+    --shadow:0 10px 30px rgba(0,0,0,.6);
+    --transition: .35s ease;
+  }
+
+  .pd-wrap{
+    font-family:'Poppins', sans-serif;
+    background-color:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    max-width:1100px;
+    margin-inline:auto;
+    padding:clamp(16px,3vw,36px);
+  }
+
+  /* Niveles de comunicación */
+  .pd-kicker{
+    font-weight:100; /* thin */
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text);
+    opacity:0.8;
+    margin:0 0 .25rem 0;
+  }
+  .pd-title{
+    font-weight:700; /* bold */
+    font-size:clamp(28px,4vw,44px);
+    line-height:1.2;
+    margin:0 0 .5rem 0;
+    color:var(--text);
+  }
+  .pd-sub{
+    font-style:italic;
+    font-weight:300;
+    color:var(--text);
+    opacity:0.85;
+    margin:0 0 1.25rem 0;
+  }
+
+  /* Grid de secciones */
+  .pd-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:clamp(12px,2.4vw,20px);
+  }
+  .pd-card{
+    grid-column:span 12;
+    background:var(--accent);
+    border:1px solid var(--border);
+    border-radius:0;
+    box-shadow:var(--shadow);
+    padding:clamp(16px,2.5vw,28px);
+    transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    position:relative;
+    overflow:hidden;
+  }
+  .pd-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 40px rgba(255,255,255,.1);
+    border-color:#555555;
+  }
+  @media (min-width:860px){
+    .pd-span-6{ grid-column:span 6; }
+  }
+
+  /* Títulos de sección */
+  .pd-h{
+    font-weight:700;
+    font-size:clamp(18px,2.1vw,22px);
+    margin:0 0 .6rem 0;
+    color:var(--text);
+  }
+  .pd-lead{
+    font-style:italic;
+    font-weight:300;
+    color:var(--text);
+    opacity:0.85;
+    margin:0 0 1rem 0;
+  }
+  .pd-list{
+    margin:0; padding-left:1.1rem;
+    color:var(--text);
+  }
+  .pd-list li{
+    margin:.35rem 0;
+    font-weight:300; /* thin */
+    opacity:0.9;
+  }
+  .pd-badge{
+    display:inline-block;
+    font-weight:600;
+    font-size:.85rem;
+    padding:.35rem .6rem;
+    border-radius:0;
+    border:1px solid var(--border);
+    background:#1a1a1a;
+    color:var(--text);
+    transition:background var(--transition), transform var(--transition);
+  }
+  .pd-badge:hover{ background:#222222; transform:translateY(-1px); }
+
+  .pd-hr{
+    height:1px; background:var(--border); border:0; margin:2rem 0;
+  }
+
+  /* Animaciones */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+</style>
+  <div class="pd-grid">
+    <!-- CHECK IN -->
+    <article class="pd-card pd-span-6 reveal" data-delay="0">
+      <div class="pd-accent"></div>
+      <h2 class="pd-h">Check In</h2>
+      <p class="pd-lead">ONE DAY BEFORE THE EVENT</p>
+      <ul class="pd-list">
+        <li>At CHECK IN, present your CURP or photo ID (copy) to verify the ages of athletes.</li>
+        <li>At CHECK IN, you can pick up your athlete wristbands, tickets, and coach badges.</li>
+      </ul>
+    </article>
+
+    <!-- RECOMENDACIONES -->
+    <article class="pd-card pd-span-6 reveal" data-delay="100">
+      <h2 class="pd-h">Recommendations</h2>
+      <ul class="pd-list">
+        <li>Event tickets are sold in time blocks. Please explain the event procedure to your parents to make each block run more smoothly.</li>
+        <li>During the Competition, directors, teachers, and choreographers will have reserved seating for the EVENT.</li>
+      </ul>
+    </article>
+
+    <!-- MUSICA -->
+    <article class="pd-card pd-span-6 reveal" data-delay="150">
+      <h2 class="pd-h">Music</h2>
+      <ul class="pd-list">
+        <li>Music must be carried on a mobile device, laptop, or tablet (airplane mode).</li>
+        <li>Each studio is responsible for playing its own music for each routine.</li>
+        <li>We will have connections to the different inputs of each device.</li>
+        <li>Bring a backup USB drive.</li>
+        <li>Music from your phone: make sure the song is imported to iTunes, Spotify, or your media player. We will not be able to play any song that relies on the Internet or emails.</li>
+      </ul>
+    </article>
+
+    <!-- PROGRAMA Y HORARIOS -->
+    <article class="pd-card pd-span-6 reveal" data-delay="200">
+      <h2 class="pd-h">Program and schedule</h2>
+      <ul class="pd-list">
+        <li>Competition start times may vary depending on the number of registered routines, with start times between 7:00 AM and 9:00 AM.</li>
+        <li>The event program will be shared one week prior.</li>
+        <li>Competition times may be moved forward or delayed by 20 to 50 minutes from the scheduled time.</li>
+        <li>Competition routines that are not ready at their check-in time will be canceled and will not be rescheduled.</li>
+      </ul>
+    </article>
+
+    <!-- CAMBIOS -->
+    <article class="pd-card pd-span-6 reveal" data-delay="250">
+      <h2 class="pd-h">Deadline for changes</h2>
+      <ul class="pd-list">
+        <li>Modifications to registered routines can be made until 10 days prior to the event.</li>
+        <li>If a change is requested days before the event, a penalty of $1,000 MXN will be charged per change.</li>
+      </ul>
+      <span class="pd-badge" aria-label="Sin límite de rutinas">Number of routines: unlimited</span>
+    </article>
+
+    <!-- DETALLES TÉCNICOS -->
+    <article class="pd-card pd-span-6 reveal" data-delay="300">
+      <h2 class="pd-h">Technical details</h2>
+      <ul class="pd-list">
+        <li>If technical issues are caused by the venue, you may choose to either repeat or continue with the performance.</li>
+        <li>If any issues are caused by a participant or group, the routine is required to continue.</li>
+      </ul>
+    </article>
+
+    <!-- SEGURIDAD Y RESPONSABILIDAD -->
+    <article class="pd-card pd-span-6 reveal" data-delay="350">
+      <h2 class="pd-h">Safety and responsibility</h2>
+      <ul class="pd-list">
+        <li>Athletes, their families, and directors acknowledge and accept the risks involved in dance activities. They assume full responsibility for any injury or accident that may occur during the event.</li>
+        <li>Athletes are responsible for obtaining their own medical insurance. Power Dance MX is not responsible for any medical expenses.</li>
+      </ul>
+    </article>
+
+    <!-- DAÑOS Y PERTENENCIAS -->
+    <article class="pd-card pd-span-6 reveal" data-delay="400">
+      <h2 class="pd-h">Damages and belongings</h2>
+      <ul class="pd-list">
+        <li>Participants will be held liable for any damage to the venue or equipment.</li>
+        <li>Power Dance MX, the convention center, and the event venue disclaim any responsibility for lost or stolen items.</li>
+      </ul>
+    </article>
+
+    <!-- DERECHOS DE IMAGEN -->
+    <article class="pd-card pd-span-6 reveal" data-delay="450">
+      <h2 class="pd-h">Media Rights</h2>
+      <p class="pd-lead">By participating in POWER DANCE MX, dancers and their guardians authorize being photographed and/or filmed. This material may be used for promotional purposes.</p>
+    </article>
+
+    <!-- POLÍTICA DE PAGOS -->
+    <article class="pd-card pd-span-6 reveal" data-delay="500">
+      <div class="pd-accent"></div>
+      <h2 class="pd-h">Overview & Payments</h2>
+      <ul class="pd-list">
+        <li>To lock in your rate, a 20% deposit is required. This deposit is non-refundable and non-transferable to another city or event.</li>
+        <li>Power Dance MX does not issue refunds for studio cancellations or inability to attend the event for any reason beyond our control. A refund may only be requested if a Power Dance MX event at a given venue is canceled.</li>
+        <li>Accepted Payment Methods: Deposit, Bank Transfer, and Cash.</li>
+        <li>Checks are not accepted.</li>
+        <li>Our prices do not include sales tax.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const delay = entry.target.getAttribute('data-delay') || 0;
+        setTimeout(()=> entry.target.classList.add('in-view'), +delay);
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.18});
+  els.forEach(el=> io.observe(el));
+})();
+</script>

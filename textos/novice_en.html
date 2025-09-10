@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pestañas de Categorías</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+<style>
+  .tab-categorias {
+    font-family: 'Poppins', Arial, sans-serif;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    background: #111;
+    color: #fff;
+    box-shadow: 0 4px 40px -20px #0008;
+  }
+  .tab-categorias .tab {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    background: transparent;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .tab-categorias .tab-divider {
+    width: 30%;
+    height: 2px;
+    background: #e53935;
+    opacity: 0.35;
+    margin: 0 auto 0 auto;
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .tab-categorias .tab button {
+    flex: 1 1 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 0 10px 0;
+    border-radius: 0;
+    border-right: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    transition: color 0.2s, background 0.25s, box-shadow 0.3s;
+    position: relative;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #fff;
+    font-weight: 600;
+  }
+  .tab-categorias .tab button:last-child {
+    border-right: none;
+  }
+  .tab-categorias .tab button.active,
+  .tab-categorias .tab button:hover,
+  .tab-categorias .tab button:focus {
+    background: #e53935;
+    color: #fff;
+    box-shadow: 0 6px 18px -12px #e5393550;
+    z-index: 1;
+  }
+  .tab-categorias .tab h3 {
+    font-size: 26px;
+    font-weight: 600; 
+    margin: 0 0 2px 0;
+    letter-spacing: 0.01em;
+    color: inherit;
+    background: none;
+    border: none;
+    pointer-events: none;
+    user-select: none;
+  }
+  .tab-categorias .tab .hours-label {
+    font-size: 0.92em;
+    font-weight: 400;
+    opacity: 0.80;
+    letter-spacing: 0.01em;
+    margin-top: 2px;
+  }
+  .tab-categorias .tab .types-label {
+    font-size: 0.79em;
+    font-weight: 400;
+    opacity: 0.55;
+    margin-top: 0.1em;
+    letter-spacing: 0.01em;
+    white-space: pre-line;
+  }
+  .tab-categorias .tabcontent {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 1.3em 1.1em 1em 1.1em;
+    font-size: 1.02rem;
+    box-shadow: none;
+    margin-top: 0;
+    color: #fff;
+    border-radius: 0;
+    min-height: 400px;  /* Fijo para que no cambie la altura */
+    height: 400px;
+    overflow: auto;
+    transition: opacity 0.3s;
+  }
+  .tab-categorias .tabcontent.active {
+    display: block;
+    animation: fadeInTab 0.4s;
+    opacity: 1;
+  }
+  @keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .tab-categorias ul {
+    margin: 1em 0 1em 2em;
+    padding-left: 0;
+  }
+  .tab-categorias li { margin-bottom: 0.4em;}
+  .tab-categorias .my-2 { margin: 1em 0;}
+  @media (max-width: 700px) {
+    .tab-categorias .tab {
+      flex-direction: column;
+    }
+    .tab-categorias .tab-divider {
+      width: 60%;
+    }
+    .tab-categorias .tab button {
+      border-right: none;
+      border-bottom: 1px solid #222;
+      padding: 14px 0 10px 0;
+    }
+    .tab-categorias .tab button:last-child {
+      border-bottom: none;
+    }
+    .tab-categorias .tabcontent {
+      padding: 1em 0.5em 0.8em 0.5em;
+      font-size: 0.98em;
+      min-height: 400px;
+      height: 400px;
+    }
+    .tab-categorias .tab h3 {
+      font-size: 21px;
+    }
+  }
+</style>
+
+<div class="tab-categorias">
+  <div class="tab">
+    <button class="tablinks active" data-tab="novice">
+      <h3>NOVICE</h3>
+      <span class="hours-label">1-3 hrs/week</span>
+      <span class="types-label">Solos, Duets, Trios, Groups</span>
+    </button>
+    <button class="tablinks" data-tab="intermediate">
+      <h3>INTERMEDIATE</h3>
+      <span class="hours-label">4-5 hrs/week</span>
+      <span class="types-label">Solos, Duets, Trios, Groups</span>
+    </button>
+    <button class="tablinks" data-tab="powerelite">
+      <h3>POWER ELITE</h3>
+      <span class="hours-label">6+ hrs/week</span>
+      <span class="types-label">Solos, Duets, Trios, Groups</span>
+    </button>
+  </div>
+  <div class="tab-divider"></div>
+
+  <div id="novice" class="tabcontent active">
+    A ‘Power Elite’ dancer may not compete in the Novice category (<em>novice</em>).<br>
+    If a dancer performs any element above their designated level, the routine will be moved to the next level. The <em>Novice</em> category is designed for dancers who are just starting out..
+    <div class="my-2"></div>
+    <ul>
+      <li>A maximum of <strong>one pirouette</strong> is allowed.</li>
+      <li>A maximum of <strong>one fouetté</strong> is allowed.</li>
+      <li>A maximum of <strong>one jump</strong> is allowed without being connected to another element.</li>
+    </ul>
+    <div class="my-2"></div>
+    The use of cartwheels, front and back walkovers, rolls, and kip-ups is permitted, provided they are <strong>not combined with other technical elements</strong>.
+    <div class="my-2"></div>
+    <p>
+      Routines that are heavily loaded with advanced technical styles are not permitted.<br>
+      The performance of hands-free gymnastic elements is strictly prohibited.
+    </p>
+  </div>
+
+  <div id="intermediate" class="tabcontent">
+    The <em>Intermediate</em> category is only available for solos, duos, and trios.<br>
+    Group categories are divided only into Novice and Power Elite.
+    <br><br>
+    If a dancer performs any element above their level, the routine will be moved to the next level.
+    <br><br>
+    <strong>Permitted Elements:</strong>
+    <ul>
+      <li>A maximum of <strong>two pirouettes</strong> is allowed.</li>
+      <li>A maximum of <strong>two fouettés</strong> is allowed.</li>
+      <li>A maximum of <strong>two connected jumps</strong> is allowed.</li>
+      <li>The use of cartwheels, front and back walkovers, rolls, and kip-ups is permitted, provided they are <strong>not combined with other technical elements</strong>.</li>
+    </ul>
+    <p>
+      The performance of hands-free gymnastic elements is strictly prohibited.
+    </p>
+  </div>
+
+  <div id="powerelite" class="tabcontent">
+    Variations in combinations of <strong>fouettés</strong> and <strong>pirouettes</strong>.<br>
+    <strong>More than three technical element</strong> are allowed.<br>
+    <strong>Hands-free gymnastic elements</strong> are allowed.
+  </div>
+</div>
+
+<script>
+  // Activa pestaña al pasar el mouse, enfocar por teclado o hacer click
+  document.querySelectorAll('.tab-categorias .tab button').forEach(function(tabBtn){
+    tabBtn.addEventListener('mouseenter', function(){
+      activarPestana(tabBtn.dataset.tab);
+      tabBtn.focus();
+    });
+    tabBtn.addEventListener('focus', function(){
+      activarPestana(tabBtn.dataset.tab);
+    });
+    tabBtn.addEventListener('click', function(){
+      activarPestana(tabBtn.dataset.tab);
+    });
+  });
+
+  function activarPestana(tabName) {
+    document.querySelectorAll('.tab-categorias .tab button').forEach(function(btn){
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-categorias .tabcontent').forEach(function(content){
+      content.classList.remove('active');
+    });
+    document.querySelector('.tab-categorias .tab button[data-tab="'+tabName+'"]').classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+  }
+</script>
+
+
+
+</body>
+</html>

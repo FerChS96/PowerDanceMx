@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>POWER DANCE TOUR 2025-2026 Carrusel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Importar Montserrat desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .tour-section {
+      background: #000;
+      width: 100vw;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .tour-title {
+      text-align: center;
+      font-size: 2.2em;
+      font-weight: 900;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      margin: 16px 0 12px 0;
+      letter-spacing: 1.5px;
+      line-height: 1.1;
+    }
+    .tour-title span {
+      color: #ff0000;
+      font-weight: 900;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: visible;
+      padding: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+      /* max-width opcional si no quieres que el carrusel crezca mucho en pantallas muy grandes */
+      /* max-width: 1100px; */
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: scroll 32s linear infinite;
+      align-items: flex-start;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .city-block {
+      min-width: 220px;
+      max-width: 340px;
+      padding: 0 24px;
+      text-align: left;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-right: 2px solid #fff;
+      height: 100%;
+      white-space: normal;
+    }
+    .city-block:last-child {
+      border-right: none;
+    }
+    .city-name {
+      color: #ff0000;
+      font-size: 1.05em;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .city-details {
+      color: #fff;
+      font-size: 0.97em;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .city-block {
+        min-width: 170px;
+        max-width: 200px;
+        padding: 0 8px;
+      }
+      .tour-title {
+        font-size: 1.4em;
+      }
+    }
+    @media (max-width: 600px) {
+      .city-block {
+        min-width: 110px;
+        max-width: 170px;
+        padding: 0 4px;
+      }
+      .tour-title {
+        font-size: 1em;
+      }
+      .carousel-container {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="tour-section">
+    <div class="tour-title">
+      <span>POWER DANCE TOUR</span> 2025-2026
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <!-- Bloques de sedes, duplicados para animación infinita -->
+        <div class="city-block">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-details">8 & 9 de Noviembre 2025</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Harlingen</div>
+          <div class="city-details">7 & 8 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Querétaro</div>
+          <div class="city-details">14 & 15 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Tampico</div>
+          <div class="city-details">21 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Victoria</div>
+          <div class="city-details">2 & 3 de Mayo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Matamoros</div>
+          <div class="city-details">16 Mayo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Nationals Vallarta</div>
+          <div class="city-details">6 & 7 de Junio 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Mérida</div>
+          <div class="city-details">24 de Octubre 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-details">14 & 15 de Noviembre 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Monterrey</div>
+          <div class="city-details">7 & 8 de Noviembre 2026</div>
+        </div>
+        <!-- Duplicado para loop infinito -->
+        <div class="city-block">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-details">8 & 9 de Noviembre 2025</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Harlingen</div>
+          <div class="city-details">7 & 8 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Querétaro</div>
+          <div class="city-details">14 & 15 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Tampico</div>
+          <div class="city-details">21 de Marzo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Victoria</div>
+          <div class="city-details">2 & 3 de Mayo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Matamoros</div>
+          <div class="city-details">16 Mayo 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Nationals Vallarta</div>
+          <div class="city-details">6 & 7 de Junio 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Mérida</div>
+          <div class="city-details">24 de Octubre 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-details">14 & 15 de Noviembre 2026</div>
+        </div>
+        <div class="city-block">
+          <div class="city-name">Monterrey</div>
+          <div class="city-details">7 & 8 de Noviembre 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
