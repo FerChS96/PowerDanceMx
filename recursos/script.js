@@ -1,23 +1,27 @@
-// PowerDance Login Menu Script - VERSIÓN INTERACTIVA
+// Función para cargar Font Awesome si no existe
+    function loadFontAwesome() {
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(link);
+        }
+    }// PowerDance Login Menu Script - VERSIÓN CORREGIDA
 (function() {
     'use strict';
     
     // Verificar que no se ejecute dos veces
     if (document.getElementById('powerDanceLoginMenu')) return;
     
-    // Variables para el arrastre
-    let isDragging = false;
-    let dragStartTime = 0;
-    let dragTimeout = null;
-    let initialX = 0;
-    let initialY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let xOffset = 0;
-    let yOffset = 0;
-    let canDrag = false;
+    // Verificar si estamos en la página de usuarios y no ejecutar el script
+    if (window.location.href.includes('https://powerdancemx.com.mx/users/')) {
+        return;
+    }
     
-    // CSS Styles (con nuevas animaciones)
+    // Variables simplificadas (sin arrastre)
+    let clickTimeout = null;
+    
+    // CSS Styles (corregidos)
     const styles = `
         <style id="powerdance-login-styles">
         /* Contenedor de la pestaña flotante */
@@ -25,17 +29,13 @@
           position: fixed;
           top: 120px;
           left: 0;
-          z-index: 9999;
+          z-index: 1000;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           user-select: none;
-        }
-        
-        .login-toggle-container.dragging {
-          cursor: move !important;
-          z-index: 99999;
+          pointer-events: auto;
         }
         
         /* Botón de toggle (pestaña) */
@@ -55,6 +55,7 @@
           animation: dance-beat 2s ease-in-out infinite;
           position: relative;
           overflow: visible;
+          pointer-events: auto;
         }
         
         /* Animación de latido/baile */
@@ -78,6 +79,7 @@
           transition: transform 0.6s ease;
           z-index: 2;
           position: relative;
+          pointer-events: none;
         }
         
         .login-toggle-btn:hover {
@@ -150,6 +152,7 @@
           transform: translateX(-100%);
           transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           transform-origin: left center;
+          pointer-events: auto;
         }
         
         .login-menu.open {
@@ -170,6 +173,7 @@
           overflow: hidden;
           opacity: 0;
           transform: translateX(-20px);
+          pointer-events: auto;
         }
         
         /* Animación de entrada para los elementos del menú */
@@ -196,6 +200,7 @@
           background-color: #FF0000;
           transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
+          pointer-events: none;
         }
         
         .login-menu-item:hover::before {
@@ -217,27 +222,12 @@
           background-color: red;
           opacity: 0;
           pointer-events: none;
-          z-index: 99999;
+          z-index: 9999;
           transition: opacity 0.05s ease-in-out;
         }
         
         .flash-overlay.flash {
           opacity: 0.1;
-        }
-        
-        /* Indicador de drag habilitado */
-        .login-toggle-container.drag-enabled .login-toggle-btn {
-          cursor: move;
-          animation: drag-ready 1s ease-in-out infinite;
-        }
-        
-        @keyframes drag-ready {
-          0%, 100% {
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 0, 0, 0.7);
-          }
-          50% {
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 0, 0, 0);
-          }
         }
         </style>
     `;
@@ -253,7 +243,9 @@
           </div>
           <div class="login-menu" id="loginMenu">
             <a href="https://powerdancemx.com.mx/login/" class="login-menu-item">Login</a>
-            <a href="https://powerdancemx.com.mx/registration/" class="login-menu-item">Register</a>
+            <a href="https://powerdancemx.com.mx/sign-up/" class="login-menu-item">Register</a>
+            <a href="https://powerdancemx.com.mx/mi-cuenta/" class="login-menu-item">Profile</a>
+            <a href="https://powerdancemx.com.mx/my-account/" class="login-menu-item">My Account</a>
           </div>
         </div>
     `;
@@ -281,84 +273,6 @@
         }, 800);
     }
     
-    // Funciones de arrastre
-    function dragStart(e) {
-        const container = document.getElementById('powerDanceLoginMenu');
-        if (!canDrag) return;
-        
-        if (e.type === "touchstart") {
-            initialX = e.touches[0].clientX - xOffset;
-            initialY = e.touches[0].clientY - yOffset;
-        } else {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-        }
-        
-        if (e.target === document.getElementById('toggleLoginMenu') || 
-            e.target.parentNode === document.getElementById('toggleLoginMenu')) {
-            isDragging = true;
-            container.classList.add('dragging');
-        }
-    }
-    
-    function dragEnd() {
-        if (!isDragging) return;
-        
-        const container = document.getElementById('powerDanceLoginMenu');
-        initialX = currentX;
-        initialY = currentY;
-        isDragging = false;
-        container.classList.remove('dragging');
-        
-        // Mantener dentro de los límites de la pantalla
-        const rect = container.getBoundingClientRect();
-        const maxX = window.innerWidth - rect.width;
-        const maxY = window.innerHeight - rect.height;
-        
-        if (currentX < 0) currentX = 0;
-        if (currentY < 0) currentY = 0;
-        if (currentX > maxX) currentX = maxX;
-        if (currentY > maxY) currentY = maxY;
-        
-        xOffset = currentX;
-        yOffset = currentY;
-        
-        setTranslate(currentX, currentY, container);
-    }
-    
-    function drag(e) {
-        if (!isDragging || !canDrag) return;
-        
-        e.preventDefault();
-        
-        if (e.type === "touchmove") {
-            currentX = e.touches[0].clientX - initialX;
-            currentY = e.touches[0].clientY - initialY;
-        } else {
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-        }
-        
-        xOffset = currentX;
-        yOffset = currentY;
-        
-        setTranslate(currentX, currentY, document.getElementById('powerDanceLoginMenu'));
-    }
-    
-    function setTranslate(xPos, yPos, el) {
-        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
-    }
-    
-    // Función para cargar Font Awesome si no existe
-    function loadFontAwesome() {
-        if (!document.querySelector('link[href*="font-awesome"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
-            document.head.appendChild(link);
-        }
-    }
-    
     // Función para inicializar el menú
     function initPowerDanceMenu() {
         // Cargar Font Awesome
@@ -379,78 +293,39 @@
         if (toggleBtn && loginMenu && flashOverlay && container) {
             
             // Event listener para el botón principal
-            toggleBtn.addEventListener("mousedown", function(e) {
-                dragStartTime = Date.now();
+            toggleBtn.addEventListener("click", function(e) {
+                // Toggle del menú
+                loginMenu.classList.toggle("open");
+                toggleBtn.classList.toggle("open");
                 
-                // Configurar timeout para habilitar drag después de 3 segundos
-                dragTimeout = setTimeout(() => {
-                    canDrag = true;
-                    container.classList.add('drag-enabled');
-                }, 3000);
+                // Crear ondas
+                createRipple(e, toggleBtn);
+                
+                // Efecto de flash rojo
+                flashOverlay.classList.add("flash");
+                setTimeout(function() {
+                    flashOverlay.classList.remove("flash");
+                }, 80);
             });
-            
-            toggleBtn.addEventListener("mouseup", function(e) {
-                const holdTime = Date.now() - dragStartTime;
-                
-                // Limpiar timeout si se suelta antes de 3 segundos
-                if (dragTimeout) {
-                    clearTimeout(dragTimeout);
-                    dragTimeout = null;
-                }
-                
-                // Si se mantuvo presionado menos de 3 segundos, actuar como click normal
-                if (holdTime < 3000 && !isDragging) {
-                    // Toggle del menú
-                    loginMenu.classList.toggle("open");
-                    toggleBtn.classList.toggle("open");
-                    
-                    // Crear ondas
-                    createRipple(e, toggleBtn);
-                    
-                    // Efecto de flash rojo
-                    flashOverlay.classList.add("flash");
-                    setTimeout(function() {
-                        flashOverlay.classList.remove("flash");
-                    }, 80);
-                }
-                
-                // Reset drag state después de un momento
-                setTimeout(() => {
-                    canDrag = false;
-                    container.classList.remove('drag-enabled');
-                }, 1000);
-            });
-            
-            // Event listeners para arrastre
-            container.addEventListener('mousedown', dragStart, false);
-            container.addEventListener('touchstart', dragStart, false);
-            
-            document.addEventListener('mousemove', drag, false);
-            document.addEventListener('touchmove', drag, false);
-            
-            document.addEventListener('mouseup', dragEnd, false);
-            document.addEventListener('touchend', dragEnd, false);
             
             // Cerrar menú al hacer clic fuera
             document.addEventListener("click", function (e) {
-                if (!isDragging && !toggleBtn.contains(e.target) && !loginMenu.contains(e.target)) {
+                if (!toggleBtn.contains(e.target) && !loginMenu.contains(e.target)) {
                     loginMenu.classList.remove("open");
                     toggleBtn.classList.remove("open");
                 }
             });
             
-            // Múltiples clics para más ondas
+            // Manejar clicks adicionales para ondas
             let clickCount = 0;
             toggleBtn.addEventListener('click', function(e) {
-                if (!isDragging && !canDrag) {
-                    clickCount++;
-                    createRipple(e, toggleBtn);
-                    
-                    // Reset contador después de 1 segundo
-                    setTimeout(() => {
-                        clickCount = 0;
-                    }, 1000);
-                }
+                clickCount++;
+                createRipple(e, toggleBtn);
+                
+                // Reset contador después de 1 segundo
+                setTimeout(() => {
+                    clickCount = 0;
+                }, 1000);
             });
         }
     }

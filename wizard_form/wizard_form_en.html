@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Dance Tour 2025-2026</title>
+    <!-- Carga de Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ====== POWER DANCE TOUR – WIZARD MODERNO ====== */
+        .tour {
+            --bg: #0b0b0b;
+            --ink: #f5f5f5;
+            --muted: #b5b5b5;
+            --accent: #e21919;
+            --card: #151515;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --gap: 18px;
+
+            background: var(--bg);
+            color: var(--ink);
+            padding: clamp(24px, 5vw, 56px);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .tour * {
+            box-sizing: border-box;
+        }
+
+        .tour__content {
+            max-width: 1100px;
+            margin-inline: auto;
+        }
+
+        /* ====== HEADER ====== */
+        .tour__head h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 800;
+            letter-spacing: .5px;
+            margin: 0 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+            text-wrap: balance;
+        }
+
+        .tour__head h2 span {
+            color: var(--ink);
+            opacity: .85;
+            font-weight: 800;
+        }
+
+        /* ====== PROGRESS INDICATOR ====== */
+        .wizard-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            border: 3px solid var(--muted);
+            background: var(--bg);
+            color: var(--muted);
+        }
+
+        .step-circle.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px rgba(226, 25, 25, 0.2);
+        }
+
+        .step-circle.completed {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step-label.active {
+            color: var(--accent);
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .step-label.completed {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: var(--muted);
+            z-index: 1;
+        }
+
+        .progress-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.5s ease;
+            width: var(--progress, 0%);
+        }
+
+        /* ====== WIZARD STEPS ====== */
+        .wizard-step {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ====== STEP 1: SELECCIÓN DE SEDE ====== */
+        .tour__year {
+            margin: 28px 0 12px;
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 1.1;
+            letter-spacing: .22em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .tour__list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--gap) clamp(20px, 4vw, 30px);
+            margin: 0;
+            padding: 8px 0;
+            list-style: none;
+        }
+
+        .tour__list li {
+            --shadow: 0 6px 14px rgba(0, 0, 0, .25);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 14px;
+            background: var(--card);
+            padding: 16px 18px;
+            position: relative;
+            font-variant-numeric: tabular-nums;
+            box-shadow: var(--shadow);
+            isolation: isolate;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tour__list li::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid #ffffff14;
+            pointer-events: none;
+        }
+
+        .tour__list li::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform .45s cubic-bezier(.2, .8, 0, 1);
+            z-index: 0;
+        }
+
+        .tour__list li:not(.disabled):hover::after {
+            transform: scaleX(1);
+        }
+
+        .tour__list li > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tour__list li.selected {
+            border: 2px solid var(--accent);
+            transform: scale(1.02);
+        }
+
+        .tour__list li.selected::after {
+            transform: scaleX(1);
+        }
+
+        .tour__list li.disabled {
+            opacity: 0.4;
+            filter: grayscale(1);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .tour__list li.disabled::after {
+            display: none;
+        }
+
+        .city {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            overflow-wrap: anywhere;
+        }
+
+        .tour time {
+            position: relative;
+            display: inline-block;
+            padding: .35rem .6rem;
+            color: var(--ink);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .tour time .badge {
+            display: inline-block;
+            margin-right: .5rem;
+            transform: translateY(-1px);
+            font-weight: 800;
+            font-size: .72rem;
+            line-height: 1;
+            color: #fff;
+            background: color-mix(in srgb, var(--accent) 85%, #000 0%);
+            border-radius: 999px;
+            padding: .32rem .5rem;
+        }
+
+        /* ====== STEP 2 & 3: FORMULARIO ====== */
+        .form-card {
+            background: var(--card);
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-card h3 {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: clamp(20px, 3vw, 32px);
+            line-height: 1.2;
+        }
+
+        .step-instructions {
+            color: var(--muted);
+            font-size: clamp(14px, 2vw, 18px);
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .selected-info {
+            background: rgba(226, 25, 25, 0.1);
+            border: 1px solid var(--accent);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .selected-info p {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: grid;
+            gap: 12px;
+        }
+
+        .radio-option {
+            background: var(--card);
+            border: 1px solid #ffffff14;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radio-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .radio-option::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform .45s cubic-bezier(.2, .8, 0, 1);
+            z-index: 0;
+        }
+
+        .radio-option:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .radio-option:hover::before {
+            left: 100%;
+        }
+
+        .radio-option:hover::after {
+            transform: scaleX(1);
+        }
+
+        .radio-option.selected::after {
+            transform: scaleX(1);
+        }
+
+        .radio-option > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .radio-text {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .radio-description {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 18px;
+            background: #222;
+            border: none;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            background: #333;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        /* ====== SUMMARY ====== */
+        .summary-card {
+            background: linear-gradient(135deg, rgba(226, 25, 25, 0.15), rgba(226, 25, 25, 0.05));
+            border: 2px solid var(--accent);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+            margin-top: 12px;
+            padding-top: 16px;
+        }
+
+        .summary-label {
+            font-weight: 600;
+        }
+
+        .summary-value {
+            font-weight: 700;
+        }
+
+        /* ====== BUTTONS ====== */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c01414;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(226, 25, 25, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+            border: 2px solid var(--muted);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* ====== LOGIN REQUIRED ====== */
+        .login-required {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .login-required h3 {
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .login-required p {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .login-required a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-required a:hover {
+            text-decoration: underline;
+        }
+
+                /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .wizard-progress {
+                margin: 20px 0;
+            }
+
+            .progress-step {
+                flex: 1;
+            }
+
+            .step-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .step-circle.active {
+                transform: scale(1.15);
+            }
+
+            .step-label {
+                font-size: 11px;
+            }
+
+            .step-label.active {
+                font-size: 13px;
+            }
+
+            .form-card {
+                padding: 24px;
+            }
+
+            .form-card h3 {
+                font-size: clamp(18px, 4vw, 28px);
+            }
+
+            .step-instructions {
+                font-size: clamp(13px, 3vw, 16px);
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .tour time .badge {
+                display: block;
+                margin-right: 0;
+                margin-bottom: .3rem;
+                width: fit-content;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="tour" id="tour-section">
+        <div class="tour__content">
+            <header class="tour__head">
+                <h2><span style="color: var(--accent);">POWER DANCE TOUR</span> <span>2025–2026</span></h2>
+            </header>
+
+            <!-- Progress Indicator -->
+            <div class="wizard-progress">
+                <div class="progress-step" data-step="1">
+                    <div class="step-circle active">1</div>
+                    <div class="step-label active">Choose Location</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Choose stage</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Division & payment</div>
+                </div>
+                <div class="progress-line" style="--progress: 0%"></div>
+            </div>
+
+            <!-- STEP 1: Selección de Sede -->
+            <div class="wizard-step active" id="step1">
+                <div class="form-card">
+                    <h3>Select your location</h3>
+                    <p class="step-instructions">Select the city where you’d like to join the Power Dance Tour. Past dates will be shown as unavailable.</p>
+                </div>
+
+                <h3 class="tour__year">2025</h3>
+                <ul class="tour__list">
+                    <li data-date="2025-11-08" data-city="Guadalajara">
+                        <time datetime="2025-11-08">8 & 9 Nov 2025</time>
+                        <span class="city">GUADALAJARA</span>
+                    </li>
+                </ul>
+
+                <h3 class="tour__year">2026</h3>
+                <ul class="tour__list">
+                    <li data-date="2026-03-07" data-city="Harlingen, TX">
+                        <time datetime="2026-03-07">7 & 8 Mar 2026</time>
+                        <span class="city">HARLINGEN, TX</span>
+                    </li>
+                    <li data-date="2026-03-14" data-city="Querétaro">
+                        <time datetime="2026-03-14">14 & 15 Mar 2026</time>
+                        <span class="city">QUERÉTARO</span>
+                    </li>
+                    <li data-date="2026-03-21" data-city="Tampico">
+                        <time datetime="2026-03-21">21 Mar 2026</time>
+                        <span class="city">TAMPICO</span>
+                    </li>
+                    <li data-date="2026-05-02" data-city="Victoria">
+                        <time datetime="2026-05-02">2 & 3 May 2026</time>
+                        <span class="city">VICTORIA</span>
+                    </li>
+                    <li data-date="2026-05-16" data-city="Matamoros">
+                        <time datetime="2026-05-16">16 May 2026</time>
+                        <span class="city">MATAMOROS</span>
+                    </li>
+                    <li data-date="2026-06-06" data-city="Vallarta">
+                        <time datetime="2026-06-06">
+                            <span class="badge">NATIONALS</span>6 & 7 Jun 2026
+                        </time>
+                        <span class="city">VALLARTA</span>
+                    </li>
+                    <li data-date="2026-10-24" data-city="Mérida">
+                        <time datetime="2026-10-24">24 Oct 2026</time>
+                        <span class="city">MÉRIDA</span>
+                    </li>
+                    <li data-date="2026-11-14" data-city="Guadalajara">
+                        <time datetime="2026-11-14">14 & 15 Nov 2026</time>
+                        <span class="city">GUADALAJARA</span>
+                    </li>
+                    <li data-date="2026-11-07" data-city="Monterrey">
+                        <time datetime="2026-11-07">7 & 8 Nov 2026</time>
+                        <span class="city">MONTERREY</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- STEP 2: Selección de Fase -->
+            <div class="wizard-step" id="step2">
+                <div class="form-card">
+                    <h3>Choose your stage</h3>
+                    <p class="step-instructions">Choose the stage where you want to compete.</p>
+                    
+                    <div class="selected-info">
+                        <p><strong>Location:</strong> <span id="selectedCityDisplayStep2"></span></p>
+                        <p><strong>Date:</strong> <span id="selectedDateDisplayStep2"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Which stage would you like to join?</label>
+                        <div class="radio-group">
+                            <label class="radio-option" for="fase1">
+                                <input type="radio" id="fase1" name="phase" value="fase1" checked>
+                                <div class="radio-text">Fase 1</div>
+                                <div class="radio-description">First Round of the Competition</div>
+                            </label>
+                            <label class="radio-option" for="fase2">
+                                <input type="radio" id="fase2" name="phase" value="fase2">
+                                <div class="radio-text">Fase 2</div>
+                                <div class="radio-description">Second Round of the Competition</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Regresar</button>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continuar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: División y Pago -->
+            <div class="wizard-step" id="step3">
+                <div class="form-card">
+                    <h3>Category and Number</h3>
+                    <p class="step-instructions">Choose the division based on the number of dancers and enter the total number of participants. The final price will be calculated automatically.</p>
+                    
+                    <div class="selected-info">
+                        <p><strong>Location:</strong> <span id="selectedCityDisplay2"></span></p>
+                        <p><strong>Date:</strong> <span id="selectedDateDisplay2"></span></p>
+                        <p><strong>Stage:</strong> <span id="selectedPhaseDisplay"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Choose the division</label>
+                        <div class="radio-group" id="divisionOptions">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="dancerCountGroup" style="display:none;">
+                        <label class="form-label">Number of dancers<span id="dancerRange"></span></label>
+                        <input type="number" id="studentCount" class="input-field" min="1" value="1">
+                    </div>
+
+                    <div class="summary-card" id="summaryCard" style="display:none;">
+                        <h4 style="margin: 0 0 16px; color: var(--accent);">Registration Summary</h4>
+                        <div class="summary-row">
+                            <span class="summary-label">Division:</span>
+                            <span class="summary-value" id="summaryDivision"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Dancers:</span>
+                            <span class="summary-value" id="summaryDancers"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Fee per dancer:</span>
+                            <span class="summary-value">$<span id="summaryPricePer"></span></span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Your Total:</span>
+                            <span class="summary-value">$<span id="summaryTotal"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Back</button>
+                        <button type="button" class="btn btn-success" id="payButton" onclick="proceedToPayment()" style="display:none;">
+                            Proceed to Paument
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    
+  <script>
+// IDs de productos WooCommerce basados en tu CSV
+const productMap = {
+    'fase1': {
+        'solo': 1077,
+        'duo_trio': 1080, 
+        'small_group': 1083,
+        'big_group': 1085,
+        'production': 1087
+    },
+    'fase2': {
+        'solo': 1079,
+        'duo_trio': 1082,
+        'small_group': 1084, 
+        'big_group': 1086,
+        'production': 1088
+    }
+};
+
+// Datos de divisiones
+const divisions = {
+    'fase1': [
+        { value: 'solo', label: 'Solo', min: 1, max: 1, price: 1800, desc: 'Presentación individual - 2:45 min máximo' },
+        { value: 'duo_trio', label: 'Dúo/Trio', min: 2, max: 3, price: 1500, desc: 'De 2 a 3 bailarines - 2:45 min máximo' },
+        { value: 'small_group', label: 'Small Group', min: 4, max: 9, price: 1500, desc: 'De 4 a 9 bailarines - 3:00 min máximo' },
+        { value: 'big_group', label: 'Big Group', min: 10, max: 24, price: 1500, desc: 'De 10 a 24 bailarines - 3:00 min máximo' },
+        { value: 'production', label: 'Production', min: 25, max: 100, price: 1500, desc: '25+ bailarines - 3:00 min máximo' }
+    ],
+    'fase2': [
+        { value: 'solo', label: 'Solo', min: 1, max: 1, price: 2000, desc: 'Presentación individual - 2:45 min máximo' },
+        { value: 'duo_trio', label: 'Dúo/Trio', min: 2, max: 3, price: 1800, desc: 'De 2 a 3 bailarines - 2:45 min máximo' },
+        { value: 'small_group', label: 'Small Group', min: 4, max: 9, price: 1800, desc: 'De 4 a 9 bailarines - 3:00 min máximo' },
+        { value: 'big_group', label: 'Big Group', min: 10, max: 24, price: 1800, desc: 'De 10 a 24 bailarines - 3:00 min máximo' },
+        { value: 'production', label: 'Production', min: 25, max: 100, price: 1800, desc: '25+ bailarines - 3:00 min máximo' }
+    ]
+};
+
+// Variables globales
+let currentStep = 1;
+let selectedData = {};
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', function () {
+    loadProgress(); // Recuperar progreso guardado
+    initializeDateFiltering();
+    initializeRadioHandlers();
+    updateDivisionOptions();
+});
+
+function initializeDateFiltering() {
+    const today = new Date().toISOString().split('T')[0];
+    const cards = document.querySelectorAll('.tour__list li');
+
+    cards.forEach(card => {
+        const date = card.getAttribute('data-date');
+        if (date < today) {
+            card.classList.add('disabled');
+        } else {
+            card.addEventListener('click', function () {
+                selectVenue(this);
+            });
+        }
+    });
+}
+
+function selectVenue(element) {
+    document.querySelectorAll('.tour__list li').forEach(c => c.classList.remove('selected'));
+    element.classList.add('selected');
+
+    selectedData.city = element.getAttribute('data-city');
+    selectedData.date = element.getAttribute('data-date');
+
+    ['selectedCityDisplayStep2', 'selectedCityDisplay2'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = selectedData.city;
+    });
+
+    ['selectedDateDisplayStep2', 'selectedDateDisplay2'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = formatDate(selectedData.date);
+    });
+
+    setTimeout(() => goToStep(2), 800);
+}
+
+function formatDate(dateString) {
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        timeZone: 'America/Mexico_City'
+    };
+    return new Date(dateString).toLocaleDateString('es-MX', options);
+}
+
+function initializeRadioHandlers() {
+    document.querySelectorAll('input[name="phase"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            selectedData.phase = this.value;
+            updateRadioStyles('phase');
+            updateDivisionOptions();
+        });
+    });
+
+    // Establecer fase inicial
+    selectedData.phase = 'fase1';
+    document.getElementById('fase1').checked = true;
+    updateRadioStyles('phase');
+}
+
+function updateRadioStyles(groupName) {
+    const group = document.querySelectorAll(`input[name="${groupName}"]`);
+    group.forEach(radio => {
+        const label = radio.closest('.radio-option');
+        if (radio.checked) {
+            label?.classList.add('selected');
+        } else {
+            label?.classList.remove('selected');
+        }
+    });
+}
+
+function updateDivisionOptions() {
+    const phase = document.querySelector('input[name="phase"]:checked')?.value || 'fase1';
+    const container = document.getElementById('divisionOptions');
+    container.innerHTML = '';
+
+    divisions[phase].forEach(division => {
+        const label = document.createElement('label');
+        label.className = 'radio-option';
+        label.innerHTML = `
+            <input type="radio" name="division" value="${division.value}" 
+                   data-min="${division.min}" data-max="${division.max}" 
+                   data-price="${division.price}" data-label="${division.label}">
+            <div class="radio-text">${division.label} - $${division.price.toLocaleString('es-MX')}</div>
+            <div class="radio-description">${division.desc}</div>
+        `;
+        
+        const radio = label.querySelector('input');
+        radio.addEventListener('change', () => {
+            if (radio.checked) selectDivision(radio);
+        });
+        
+        container.appendChild(label);
+    });
+}
+
+function selectDivision(radio) {
+    selectedData.division = radio.value;
+    selectedData.divisionLabel = radio.dataset.label;
+    selectedData.minDancers = parseInt(radio.dataset.min);
+    selectedData.maxDancers = parseInt(radio.dataset.max);
+    selectedData.price = parseInt(radio.dataset.price);
+
+    updateRadioStyles('division');
+
+    const input = document.getElementById('studentCount');
+    const newInput = input.cloneNode(true);
+    input.replaceWith(newInput);
+    const updatedInput = newInput;
+
+    updatedInput.min = selectedData.minDancers;
+    updatedInput.max = selectedData.maxDancers;
+    updatedInput.value = selectedData.minDancers;
+
+    const maxText = selectedData.maxDancers === 100 ? '25+' : selectedData.maxDancers;
+    document.getElementById('dancerRange').textContent = `(mín: ${selectedData.minDancers}, máx: ${maxText})`;
+
+    document.getElementById('dancerCountGroup').style.display = 'block';
+
+    updatedInput.addEventListener('input', function () {
+        let val = parseInt(this.value) || selectedData.minDancers;
+        if (val < selectedData.minDancers) this.value = selectedData.minDancers;
+        if (val > selectedData.maxDancers) this.value = selectedData.maxDancers;
+        updateSummary();
+    });
+
+    updateSummary();
+}
+
+function updateSummary() {
+    const dancerCount = parseInt(document.getElementById('studentCount').value) || selectedData.minDancers;
+    const total = dancerCount * selectedData.price;
+
+    document.getElementById('selectedCityDisplay2').textContent = selectedData.city;
+    document.getElementById('selectedDateDisplay2').textContent = formatDate(selectedData.date);
+    document.getElementById('selectedPhaseDisplay').textContent = selectedData.phase === 'fase1' ? 'Fase 1' : 'Fase 2';
+
+    document.getElementById('summaryDivision').textContent = selectedData.divisionLabel;
+    document.getElementById('summaryDancers').textContent = dancerCount;
+    document.getElementById('summaryPricePer').textContent = selectedData.price.toLocaleString('es-MX');
+    document.getElementById('summaryTotal').textContent = total.toLocaleString();
+
+    selectedData.dancerCount = dancerCount;
+    selectedData.total = total;
+
+    document.getElementById('summaryCard').style.display = 'block';
+    document.getElementById('payButton').style.display = 'block';
+}
+
+function goToStep(stepNumber) {
+    if (stepNumber > currentStep && !validateCurrentStep()) return;
+
+    document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+
+    currentStep = stepNumber;
+    const nextStep = document.getElementById(`step${currentStep}`);
+    if (nextStep) {
+        nextStep.classList.add('active');
+        nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        updateProgress();
+    }
+}
+
+function validateCurrentStep() {
+    switch (currentStep) {
+        case 1: return selectedData.city && selectedData.date;
+        case 2: return selectedData.phase;
+        case 3: return selectedData.division && selectedData.dancerCount;
+        default: return true;
+    }
+}
+
+function updateProgress() {
+    const steps = document.querySelectorAll('.progress-step');
+    const progressLine = document.querySelector('.progress-line');
+
+    steps.forEach((step, index) => {
+        const stepNumber = index + 1;
+        const circle = step.querySelector('.step-circle');
+        const label = step.querySelector('.step-label');
+
+        if (stepNumber < currentStep) {
+            circle.className = 'step-circle completed';
+            circle.innerHTML = '✓';
+            label.className = 'step-label completed';
+        } else if (stepNumber === currentStep) {
+            circle.className = 'step-circle active';
+            circle.innerHTML = stepNumber;
+            label.className = 'step-label active';
+        } else {
+            circle.className = 'step-circle';
+            circle.innerHTML = stepNumber;
+            label.className = 'step-label';
+        }
+    });
+
+    const progressPercentage = ((currentStep - 1) / 2) * 100;
+    progressLine.style.setProperty('--progress', `${progressPercentage}%`);
+}
+
+// ====== FUNCIÓN PRINCIPAL: PROCESAR PAGO ======
+async function proceedToPayment() {
+    if (!selectedData.city || !selectedData.phase || !selectedData.division || !selectedData.dancerCount) {
+        alert('Please complete all fields before continuing.');
+        return;
+    }
+
+    const button = document.getElementById('payButton');
+    const originalText = button.innerHTML;
+    button.innerHTML = 'Checking...';
+    button.disabled = true;
+
+    try {
+        // Verificar login y obtener datos del usuario
+        const loginResponse = await fetch(pdAjax.ajaxurl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'action=check_user_login'
+        });
+
+        const loginData = await loginResponse.json();
+
+        if (!loginData.success) {
+            alert('You must log in to register.');
+            button.innerHTML = originalText;
+            button.disabled = false;
+            window.location.href = '/login';
+            return;
+        }
+
+        const userData = loginData.data;
+        const productID = productMap[selectedData.phase][selectedData.division];
+
+        if (!productID) {
+            throw new Error('Product not found');
+        }
+
+        const inscriptionData = {
+            responsible: userData.name,
+            email: userData.email,
+            city: selectedData.city,
+            date: selectedData.date,
+            phase: selectedData.phase,
+            division: selectedData.division,
+            divisionLabel: selectedData.divisionLabel,
+            dancers: selectedData.dancerCount,
+            pricePerDancer: selectedData.price,
+            total: selectedData.total,
+            timestamp: new Date().toISOString()
+        };
+
+        button.innerHTML = 'Adding to car...';
+
+        const cartResponse = await fetch(pdAjax.ajaxurl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                action: 'pd_add_to_cart',
+                product_id: productID,
+                quantity: selectedData.dancerCount,
+                inscription_data: JSON.stringify(inscriptionData)
+            })
+        });
+
+        const cartData = await cartResponse.json();
+
+        if (cartData.success) {
+            button.innerHTML = 'Redirecting...';
+            setTimeout(() => {
+                window.location.href = cartData.data.cart_url;
+            }, 800);
+        } else {
+            throw new Error(cartData.message || 'Oops! Something went wrong while adding to your cart');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error: ' + error.message);
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }
+}
+
+// ====== FUNCIONES AUXILIARES ======
+function resetForm() {
+    selectedData = {};
+    currentStep = 1;
+    document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    document.getElementById('fase1').checked = true;
+    ['dancerCountGroup', 'summaryCard', 'payButton'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    goToStep(1);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && currentStep > 1) goToStep(currentStep - 1);
+});
+
+function saveProgress() {
+    if (Object.keys(selectedData).length > 0) {
+        localStorage.setItem('powerDanceProgress', JSON.stringify(selectedData));
+    }
+}
+
+function loadProgress() {
+    const saved = localStorage.getItem('powerDanceProgress');
+    if (saved) {
+        selectedData = JSON.parse(saved);
+        // Puedes restaurar UI si es necesario
+    }
+}
+
+window.addEventListener('beforeunload', saveProgress);
+</script>
+    
+</body>
+</html>

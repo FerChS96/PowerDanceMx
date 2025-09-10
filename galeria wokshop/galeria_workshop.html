@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+
+    <!-- BaguetteBox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/baguettebox.js@1.8.1/dist/baguetteBox.min.css">
+
+    <title>Power Dance</title>
+
+    <style>
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            font: normal 16px sans-serif;
+            padding: 40px 0;
+        }
+
+        .container.gallery-container {
+            background-color: #000000;
+            color: #35373a;
+            min-height: 100vh;
+            padding: 30px 50px;
+        }
+
+        .tz-gallery {
+            padding: 40px;
+        }
+
+        .tz-gallery .row > div {
+            padding: 2px;
+        }
+
+        .tz-gallery .lightbox img {
+            width: 100%;
+            border-radius: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tz-gallery .lightbox::before {
+            content: '\e003';
+            font-family: 'Glyphicons Halflings';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            color: white;
+            font-size: 26px;
+            pointer-events: none;
+            z-index: 9000;
+            transition: opacity 0.4s;
+        }
+
+        .tz-gallery .lightbox::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(233, 30, 99, 0.7);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 8000;
+        }
+
+        .tz-gallery .lightbox:hover::after,
+        .tz-gallery .lightbox:hover::before {
+            opacity: 1;
+        }
+
+        .tz-gallery .lightbox {
+            cursor: zoom-in;
+            position: relative;
+            display: block;
+        }
+
+        .baguetteBox-button {
+            background-color: transparent !important;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+            .container.gallery-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container gallery-container">
+
+    <div class="tz-gallery">
+        <div class="row">
+            <!-- Imagen 1 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06082-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06082-scaled.jpg" alt="Power Dance - Movimiento expresivo y dinámico">
+                </a>
+            </div>
+
+            <!-- Imagen 2 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06012-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06012-scaled.jpg" alt="Power Dance - Energía en cada paso">
+                </a>
+            </div>
+
+            <!-- Imagen 3 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05926-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05926-scaled.jpg" alt="Power Dance - Coreografía en movimiento">
+                </a>
+            </div>
+
+            <!-- Imagen 4 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05796-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05796-scaled.jpg" alt="Power Dance - Fuerza y ritmo combinados">
+                </a>
+            </div>
+
+            <!-- Imagen 5 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05788-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05788-scaled.jpg" alt="Power Dance - Actuación en escenario">
+                </a>
+            </div>
+
+            <!-- Imagen 6 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05746-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05746-scaled.jpg" alt="Power Dance - Concentración y pasión">
+                </a>
+            </div>
+
+            <!-- Imagen 7 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05742-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC05742-scaled.jpg" alt="Power Dance - Momento de conexión grupal">
+                </a>
+            </div>
+
+            <!-- Imagen 8 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06432-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06432-scaled.jpg" alt="Power Dance - Salto sincronizado">
+                </a>
+            </div>
+
+            <!-- Imagen 9 -->
+            <div class="col-sm-6 col-md-4">
+                <a class="lightbox" href="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06300-scaled.jpg">
+                    <img src="https://lightslategrey-rhinoceros-951043.hostingersite.com/wp-content/uploads/2025/07/DSC06300-scaled.jpg" alt="Power Dance - Estilo y actitud en escena">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- BaguetteBox JS -->
+<script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.8.1/dist/baguetteBox.min.js"></script>
+
+<script>
+    baguetteBox.run('.tz-gallery', {
+        animation: 'slideIn',
+        noScrollbars: true,
+        buttons: 'auto',
+        fullScreen: false,
+        captions: false,
+        closeOnEscape: true
+    });
+</script>
+
+</body>
+</html>
